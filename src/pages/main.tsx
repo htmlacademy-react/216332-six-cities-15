@@ -1,11 +1,11 @@
-import Container from "../components/container";
-import Card from "../components/card";
+import Container from '../components/container';
+import Card from '../components/card';
 
 type TMain = {
   cards: string[];
 }
 
-export default function Main({cards}) {
+export default function Main({cards}: TMain) {
   return (
     <Container extraClass="page--gray page--main" classMain="page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -54,10 +54,10 @@ export default function Main({cards}) {
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
                   Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
+                <svg className="places__sorting-arrow" width="7" height="4">
+                  <use xlinkHref="#icon-arrow-select"></use>
+                </svg>
+              </span>
               <ul className="places__options places__options--custom places__options--opened">
                 <li className="places__option places__option--active" tabIndex="0">Popular</li>
                 <li className="places__option" tabIndex="0">Price: low to high</li>
@@ -66,9 +66,7 @@ export default function Main({cards}) {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {cards.map((_, idx) => {
-                return <Card key={idx}/>
-              })}
+              {cards.map((_, idx) => <Card key={idx}/>)}
             </div>
           </section>
           <div className="cities__right-section">
@@ -78,4 +76,4 @@ export default function Main({cards}) {
       </div>
     </Container>
   );
-};
+}

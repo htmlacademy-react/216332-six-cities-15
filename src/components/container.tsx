@@ -15,5 +15,5 @@ export default function Container({children, extraClass, classMain}: TContainer)
         {children}
       </main>
     </div>
-  )
+  );
 }

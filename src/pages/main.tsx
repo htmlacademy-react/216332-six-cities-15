@@ -1,5 +1,5 @@
 import Container from '../components/container';
-import PlaceCard from '../components/card';
+import PlaceCard from '../components/place-card';
 
 type TMain = {
   cards: string[];
@@ -66,7 +66,7 @@ export default function Main({cards}: TMain) {
               </ul>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {cards.map((_, idx) => <PlaceCard key={idx}/>)}
+              {cards.map((el) => <PlaceCard key={el}/>)}
             </div>
           </section>
           <div className="cities__right-section">

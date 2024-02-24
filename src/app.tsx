@@ -3,7 +3,8 @@ import Favorites from './pages/favorites';
 import Login from './pages/login';
 import Offer from './pages/offer';
 import PageNotFound from './pages/pageNotFound';
-import {AppRoute} from './const';
+import PrivateRoute from './components/private-route';
+import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
 export default function App() {
@@ -20,7 +21,13 @@ export default function App() {
         />
         <Route
           path={AppRoute.Favorites}
-          element={<Favorites />}
+          element={
+            <PrivateRoute
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            >
+              <Favorites />
+            </PrivateRoute>
+          }
         />
         <Route
           path={`${AppRoute.Offer}/:id`}

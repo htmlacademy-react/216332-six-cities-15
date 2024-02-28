@@ -1,7 +1,7 @@
-import {Offer} from '../types/offer';
+import {OfferPreview} from '../types/offer-preview';
 
 type PlaceCardProps = {
-  offer: Offer;
+  offer: OfferPreview;
   onMouseEnter: (id: string) => void;
   onMouseLeave: (id: string) => void;
 }

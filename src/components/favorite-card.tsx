@@ -1,4 +1,5 @@
 import {OfferPreview} from '../types/offer-preview';
+import {calculateRating} from '../helpers/calculateRating';
 
 type FavoriteCardProps = {
   offer: OfferPreview;
@@ -47,7 +48,7 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}`}}></span>
+            <span style={{width: `${calculateRating(rating)}`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

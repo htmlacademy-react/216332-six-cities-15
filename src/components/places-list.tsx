@@ -17,6 +17,9 @@ export default function PlacesList({offers}: PlacesListProps) {
     setActiveOffer('');
   };
 
+  // eslint-disable-next-line no-console
+  console.log(activeOffer);
+
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (

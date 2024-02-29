@@ -7,10 +7,9 @@ type PlaceCardProps = {
   offer: OfferPreview;
   onMouseEnter: (id: string) => void;
   onMouseLeave: (id: string) => void;
-  onClick?: () => void;
 }
 
-export default function PlaceCard({offer, onMouseEnter, onMouseLeave, onClick}: PlaceCardProps) {
+export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCardProps) {
   const {
     id,
     title,

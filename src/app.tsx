@@ -1,7 +1,7 @@
 import Main from './pages/main';
 import Favorites from './pages/favorites';
 import Login from './pages/login';
-import * as OfferPage from './pages/offer';
+import OfferPage from './pages/offer';
 import PageNotFound from './pages/pageNotFound';
 import PrivateRoute from './components/private-route';
 import {Offer} from './types/offer';
@@ -35,8 +35,8 @@ export default function App({offers}: AppProps) {
           }
         />
         <Route
-          path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage />}
+          path={`${AppRoute.Offer}/:offerId`}
+          element={<OfferPage offers={offers}/>}
         />
         <Route
           path="*"

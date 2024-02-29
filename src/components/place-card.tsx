@@ -1,13 +1,16 @@
 import {OfferPreview} from '../types/offer-preview';
 import {calculateRating} from '../helpers/calculateRating';
+import {useNavigate} from 'react-router-dom';
+import {AppRoute} from '../const';
 
 type PlaceCardProps = {
   offer: OfferPreview;
   onMouseEnter: (id: string) => void;
   onMouseLeave: (id: string) => void;
+  onClick?: () => void;
 }
 
-export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCardProps) {
+export default function PlaceCard({offer, onMouseEnter, onMouseLeave, onClick}: PlaceCardProps) {
   const {
     id,
     title,
@@ -17,11 +20,16 @@ export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCard
     isPremium,
     rating,
   } = offer;
+  const navigate = useNavigate();
   return (
     <article
       className="cities__card place-card"
       onMouseEnter={() => onMouseEnter(id)}
       onMouseLeave={() => onMouseLeave(id)}
+      onClick={(e) => {
+        e.preventDefault();
+        navigate(`${AppRoute.Offer}/${id}`);
+      }}
     >
       {
         isPremium &&

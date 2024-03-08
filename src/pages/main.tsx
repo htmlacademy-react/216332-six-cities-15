@@ -1,11 +1,12 @@
 import Container from '../components/container';
-import PlaceCard from '../components/place-card';
+import {Offer} from '../types/offer';
+import PlacesList from '../components/places-list';
 
-type TMain = {
-  cards: string[];
+type MainProps = {
+  offers: Offer[];
 }
 
-export default function Main({cards}: TMain) {
+export default function Main({offers}: MainProps) {
   return (
     <Container extraClass="page--gray page--main" classMain="page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -49,7 +50,7 @@ export default function Main({cards}: TMain) {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{cards.length} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -65,9 +66,7 @@ export default function Main({cards}: TMain) {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <div className="cities__places-list places__list tabs__content">
-              {cards.map((el) => <PlaceCard key={el}/>)}
-            </div>
+            <PlacesList offers={offers}/>
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>

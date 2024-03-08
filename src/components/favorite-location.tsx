@@ -1,11 +1,12 @@
-import {ReactNode} from 'react';
+import {Offer} from '../types/offer';
+import FavoriteCard from './favorite-card';
 
-type TFavoriteLocation = {
-  children: ReactNode;
+type FavoriteLocationProps = {
+  offers: Offer[];
   location: string;
 }
 
-export default function FavoriteLocation({children, location}: TFavoriteLocation) {
+export default function FavoriteLocation({offers, location}: FavoriteLocationProps) {
   return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
@@ -15,7 +16,14 @@ export default function FavoriteLocation({children, location}: TFavoriteLocation
           </a>
         </div>
       </div>
-      <div className="favorites__places">{children}</div>
+      <div className="favorites__places">
+        {offers.map((offer) => (
+          <FavoriteCard
+            key={offer.id}
+            offer={offer}
+          />
+        ))}
+      </div>
     </li>
   );
 }

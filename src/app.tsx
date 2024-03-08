@@ -1,19 +1,24 @@
 import Main from './pages/main';
 import Favorites from './pages/favorites';
 import Login from './pages/login';
-import Offer from './pages/offer';
+import OfferPage from './pages/offer';
 import PageNotFound from './pages/pageNotFound';
 import PrivateRoute from './components/private-route';
+import {Offer} from './types/offer';
 import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-export default function App() {
+type AppProps = {
+  offers: Offer[];
+}
+
+export default function App({offers}: AppProps) {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<Main cards={Array.from({length:5}, () => '')} />}
+          element={<Main offers={offers} />}
         />
         <Route
           path={AppRoute.Login}
@@ -25,13 +30,13 @@ export default function App() {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <Favorites />
+              <Favorites offers={offers}/>
             </PrivateRoute>
           }
         />
         <Route
-          path={`${AppRoute.Offer}/:id`}
-          element={<Offer />}
+          path={`${AppRoute.Offer}/:offerId`}
+          element={<OfferPage offers={offers}/>}
         />
         <Route
           path="*"

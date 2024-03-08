@@ -1,19 +1,32 @@
-type TFavoriteCard = {
-  premium? : boolean;
+import {OfferPreview} from '../types/offer-preview';
+import {calculateRating} from '../helpers/calculateRating';
+
+type FavoriteCardProps = {
+  offer: OfferPreview;
 }
 
-export default function FavoriteCard({premium}: TFavoriteCard) {
+export default function FavoriteCard({offer}: FavoriteCardProps) {
+
+  const {
+    title,
+    type,
+    price,
+    previewImage,
+    isPremium,
+    rating,
+  } = offer;
+
   return (
     <article className="favorites__card place-card">
       {
-        premium &&
+        isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       }
       <div className="favorites__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src="img/apartment-small-03.jpg" width="150" height="110"
+          <img className="place-card__image" src={previewImage} width="150" height="110"
             alt="Place image"
           />
         </a>
@@ -21,7 +34,7 @@ export default function FavoriteCard({premium}: TFavoriteCard) {
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;180</b>
+            <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button"
@@ -35,14 +48,14 @@ export default function FavoriteCard({premium}: TFavoriteCard) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: '100%'}}></span>
+            <span style={{width: `${calculateRating(rating)}`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Nice, cozy, warm big bed apartment</a>
+          <a href="#">{title}</a>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{type}</p>
       </div>
     </article>
   );

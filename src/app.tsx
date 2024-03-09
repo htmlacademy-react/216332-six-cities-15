@@ -70,7 +70,7 @@ export default function App({offers, cities}: AppProps) {
         />
         <Route
           path={`${AppRoute.Offer}/:offerId`}
-          element={<OfferPage offers={offers}/>}
+          element={<OfferPage offers={offers} authorizationStatus={AuthorizationStatus.NoAuth}/>}
         />
         <Route
           path="*"

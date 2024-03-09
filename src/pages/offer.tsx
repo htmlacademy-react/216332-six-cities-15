@@ -3,12 +3,14 @@ import {Offer} from '../types/offer';
 import {useParams} from 'react-router-dom';
 import {calculateRating} from '../helpers/calculateRating';
 import OfferForm from '../components/offer-form';
+import {AuthorizationStatus} from '../const';
 
 type OfferPageProps = {
   offers: Offer[];
+  authorizationStatus: AuthorizationStatus;
 }
 
-export default function OfferPage({offers} : OfferPageProps) {
+export default function OfferPage({offers, authorizationStatus} : OfferPageProps) {
   const {offerId} = useParams();
   const currentOffer: Offer = offers.find((offer : Offer): boolean => offer?.id === offerId);
 
@@ -140,7 +142,10 @@ export default function OfferPage({offers} : OfferPageProps) {
                   </div>
                 </li>
               </ul>
-              <OfferForm/>
+              {
+                authorizationStatus === AuthorizationStatus.Auth &&
+                <OfferForm/>
+              }
             </section>
           </div>
         </div>

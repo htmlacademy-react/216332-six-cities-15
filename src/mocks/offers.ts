@@ -197,7 +197,7 @@ export const offers: Offer[] = [
     maxAdults: 9
   },
   {
-    id: '02df96b1-f554543543534fdgdfg5',
+    id: '612a6731-fcc3-4299-bff9-74dab6735bdb',
     title: 'Loft Studio in the Central Area',
     description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
     type: 'hotel',

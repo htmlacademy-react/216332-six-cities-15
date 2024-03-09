@@ -4,6 +4,7 @@ import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../const';
 import useMap from '../hooks/use-map';
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
+import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -20,7 +21,7 @@ const currentCustomIcon = new Icon({
 type MapProps = {
   city: City;
   offers: Offer[];
-  selectedOffer: Offer;
+  selectedOffer: Offer | null;
 };
 
 export default function Map(props: MapProps) {
@@ -39,7 +40,7 @@ export default function Map(props: MapProps) {
         });
 
         marker
-          .setIcon(selectedOffer !== undefined && offer.id === selectedOffer.id
+          .setIcon(selectedOffer !== null && offer.id === selectedOffer.id
             ? currentCustomIcon
             : defaultCustomIcon
           )
@@ -53,8 +54,6 @@ export default function Map(props: MapProps) {
   }, [map, offers, selectedOffer]);
 
   return (
-    <section className="cities__map map" ref={mapRef}>
-
-    </section>
+    <section className="cities__map map" ref={mapRef} />
   );
 }

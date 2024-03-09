@@ -6,7 +6,7 @@ import {AppRoute} from '../const';
 type PlaceCardProps = {
   offer: OfferPreview;
   onMouseEnter: (id: string) => void;
-  onMouseLeave: (id: string) => void;
+  onMouseLeave: () => void;
 }
 
 export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCardProps) {
@@ -24,7 +24,7 @@ export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCard
     <article
       className="cities__card place-card"
       onMouseEnter={() => onMouseEnter(id)}
-      onMouseLeave={() => onMouseLeave(id)}
+      onMouseLeave={() => onMouseLeave()}
       onClick={(e) => {
         e.preventDefault();
         navigate(`${AppRoute.Offer}/${id}`);

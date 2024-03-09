@@ -1,12 +1,19 @@
 import Container from '../components/container';
 import {Offer} from '../types/offer';
 import PlacesList from '../components/places-list';
+import Map from '../components/map';
+import {City} from '../types/city';
 
 type MainProps = {
   offers: Offer[];
+  city: City;
+  selectedOffer: Offer | null;
+  onMouseEnter: (id: string) => void;
+  onMouseLeave: (id: string) => void;
+  onSelectedCity: (id: string) => void;
 }
 
-export default function Main({offers}: MainProps) {
+export default function Main({offers, city, selectedOffer, onMouseEnter, onMouseLeave}: MainProps) {
   return (
     <Container extraClass="page--gray page--main" classMain="page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -66,10 +73,18 @@ export default function Main({offers}: MainProps) {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <PlacesList offers={offers}/>
+            <PlacesList
+              offers={offers}
+              onMouseEnter={onMouseEnter}
+              onMouseLeave={onMouseLeave}
+            />
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map
+              city={city}
+              offers={offers}
+              selectedOffer={selectedOffer}
+            />
           </div>
         </div>
       </div>

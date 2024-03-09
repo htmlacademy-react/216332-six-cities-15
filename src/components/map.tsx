@@ -47,6 +47,15 @@ export default function Map(props: MapProps) {
           .addTo(markerLayer);
       });
 
+      if (offers.length > 0) {
+        const center = offers[0].city;
+
+        map.setView({
+          lat: center.location.latitude,
+          lng: center.location.longitude
+        });
+      }
+
       return () => {
         map.removeLayer(markerLayer);
       };

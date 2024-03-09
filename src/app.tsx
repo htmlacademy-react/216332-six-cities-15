@@ -9,14 +9,14 @@ import {Offer} from './types/offer';
 import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {Cities} from './const';
-import {cities} from './mocks/cities';
 import {City} from './types/city';
 
 type AppProps = {
   offers: Offer[];
+  cities: City[];
 }
 
-export default function App({offers}: AppProps) {
+export default function App({offers, cities}: AppProps) {
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [selectedCity, setSelectedCity] = useState<string>(Cities.Amsterdam);
 
@@ -27,6 +27,7 @@ export default function App({offers}: AppProps) {
   };
 
   const currentCity: City = cities.find((city) => city.name === selectedCity);
+  const filteredOffers: Offer[] | [] = offers.filter((offer: Offer) => offer.city.name === selectedCity);
 
   const onMouseLeaveHandler = () => {
     setSelectedOffer(null);
@@ -43,7 +44,8 @@ export default function App({offers}: AppProps) {
           path={AppRoute.Root}
           element={
             <Main
-              offers={offers}
+              offers={filteredOffers}
+              cities={cities}
               selectedOffer={selectedOffer}
               city={currentCity}
               onMouseEnter={onMouseEnterHandler}
@@ -60,7 +62,7 @@ export default function App({offers}: AppProps) {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
               <Favorites offers={offers}/>
             </PrivateRoute>

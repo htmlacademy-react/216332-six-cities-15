@@ -195,5 +195,58 @@ export const offers: Offer[] = [
     rating: 2.7,
     bedrooms: 1,
     maxAdults: 9
+  },
+  {
+    id: '02df96b1-f554543543534fdgdfg5',
+    title: 'Loft Studio in the Central Area',
+    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
+    type: 'hotel',
+    price: 199,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
+    images: [
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/12.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/6.jpg'
+    ],
+    city: {
+      name: 'Paris',
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 48.868610000000004,
+      longitude: 2.342499,
+      zoom: 16
+    },
+    goods: [
+      'Washer',
+      'Washing machine',
+      'Coffee machine',
+      'Dishwasher',
+      'Towels',
+      'Baby seat',
+      'Air conditioning',
+      'Breakfast',
+      'Wi-Fi',
+      'Kitchen',
+      'Cable TV',
+      'Fridge'
+    ],
+    host: {
+      isPro: true,
+      name: 'Angelina',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
+    },
+    isPremium: false,
+    isFavorite: false,
+    rating: 2.7,
+    bedrooms: 1,
+    maxAdults: 9
   }
 ];

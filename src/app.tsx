@@ -62,7 +62,7 @@ export default function App({offers, cities}: AppProps) {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
+              authorizationStatus={AuthorizationStatus.NoAuth}
             >
               <Favorites offers={offers}/>
             </PrivateRoute>

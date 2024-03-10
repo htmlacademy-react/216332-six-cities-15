@@ -10,13 +10,15 @@ import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {Cities} from './const';
 import {City} from './types/city';
+import {Comment} from './types/comment';
 
 type AppProps = {
   offers: Offer[];
+  comments: Comment[];
   cities: City[];
 }
 
-export default function App({offers, cities}: AppProps) {
+export default function App({offers, cities, comments}: AppProps) {
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [selectedCity, setSelectedCity] = useState<string>(Cities.Amsterdam);
 
@@ -70,7 +72,13 @@ export default function App({offers, cities}: AppProps) {
         />
         <Route
           path={`${AppRoute.Offer}/:offerId`}
-          element={<OfferPage offers={offers} authorizationStatus={AuthorizationStatus.NoAuth}/>}
+          element={
+            <OfferPage
+              offers={offers}
+              comments={comments}
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            />
+          }
         />
         <Route
           path="*"

@@ -5,7 +5,7 @@ export const comments: Comment[] = [
     offerId: 'b4b7cac4-64ef-429f-b24f-8c9bf0792655',
     id: '68fd3918-2cdb-44d2-a1b2-301704d0a029',
     comment: 'This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.',
-    date: '2024-02-14T21:00:00.679Z',
+    date: '2024-01-14T21:00:00.679Z',
     rating: 4,
     user: {
       name: 'Christina',
@@ -29,7 +29,7 @@ export const comments: Comment[] = [
     offerId: 'b4b7cac4-64ef-429f-b24f-8c9bf0792655',
     id: '2c742558-79f9-4bd2-8aa4-2eee4e8e0f02',
     comment: 'This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.',
-    date: '2024-02-14T21:00:00.679Z',
+    date: '2024-03-14T21:00:00.679Z',
     rating: 4,
     user: {
       name: 'Jack',
@@ -41,7 +41,7 @@ export const comments: Comment[] = [
     offerId: '60c5b634-39be-4ff9-a4f5-2b864b2e8766',
     id: '6dd130ea-411e-4058-937b-54cd793e9c39',
     comment: 'We loved it so much, the house, the veiw, the location just great.. Highly reccomend :)',
-    date: '2024-02-15T21:00:00.679Z',
+    date: '2024-01-15T21:00:00.679Z',
     rating: 1,
     user: {
       name: 'Max',
@@ -65,7 +65,7 @@ export const comments: Comment[] = [
     offerId: '60c5b634-39be-4ff9-a4f5-2b864b2e8766',
     id: 'e5a57eb8-5d18-468c-90b6-45ceea058651',
     comment: 'This villa is perfect in every way: the view on mountains and waterfalls, the hot tub and the villa itself. The evening here became a great continuation of our journeys over country.',
-    date: '2024-02-12T21:00:00.679Z',
+    date: '2024-03-12T21:00:00.679Z',
     rating: 4,
     user: {
       name: 'Zak',
@@ -77,7 +77,7 @@ export const comments: Comment[] = [
     offerId: 'a65fed04-5db4-4fbb-936b-c699e56269c8',
     id: '1e037a6f-9e91-4da3-b53a-f2ca89892f5a',
     comment: 'Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.',
-    date: '2024-02-16T21:00:00.679Z',
+    date: '2024-05-16T21:00:00.679Z',
     rating: 2,
     user: {
       name: 'Zak',
@@ -89,7 +89,7 @@ export const comments: Comment[] = [
     offerId: 'a65fed04-5db4-4fbb-936b-c699e56269c8',
     id: '8ac06352-4c8e-4feb-aa17-616e6e3f9053',
     comment: 'Beautiful space, fantastic location and atmosphere, really a wonderful place to spend a few days. Will be back.',
-    date: '2024-02-16T21:00:00.679Z',
+    date: '2024-07-16T21:00:00.679Z',
     rating: 3,
     user: {
       name: 'Max',
@@ -101,7 +101,7 @@ export const comments: Comment[] = [
     offerId: '02df96b1-f562-4dce-af21-3fa2836ab6f4',
     id: 'b2577722-b910-4265-9985-dbfd56bcd4f9',
     comment: 'The deluxe room was a quite comfortable one with all the adequate facilities. The only thing that made me feel uncomfortable was the rude behavior of an impolite staff at the reception desk.',
-    date: '2024-02-16T21:00:00.679Z',
+    date: '2024-05-16T21:00:00.679Z',
     rating: 5,
     user: {
       name: 'Max',

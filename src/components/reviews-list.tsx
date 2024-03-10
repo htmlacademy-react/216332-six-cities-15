@@ -15,7 +15,7 @@ export default function ReviewsList({comments, children}: ReviewsListProps) {
       {
         comments?.length > 0 && (
           <ul className="reviews__list">
-            {comments.map((comment) => <ReviewsItem key={comment.offerId} comment={comment}/>)}
+            {comments.map((comment) => <ReviewsItem key={comment.id} comment={comment}/>)}
           </ul>
         )
       }

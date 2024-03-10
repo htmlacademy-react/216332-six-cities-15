@@ -4,6 +4,7 @@ import PlacesList from '../components/places-list';
 import Map from '../components/map';
 import {City} from '../types/city';
 import Tabs from '../components/tabs';
+import {CardType} from '../const';
 
 type MainProps = {
   offers: Offer[];
@@ -25,6 +26,7 @@ export default function Main(
     onMouseEnter,
     onMouseLeave
   }: MainProps) {
+
   return (
     <Container extraClass="page--gray page--main" classMain="page__main--index">
       <h1 className="visually-hidden">Cities</h1>
@@ -55,6 +57,8 @@ export default function Main(
             </form>
             <PlacesList
               offers={offers}
+              variant={CardType.Cities}
+              extraClass="cities__places-list tabs__content"
               onMouseEnter={onMouseEnter}
               onMouseLeave={onMouseLeave}
             />
@@ -64,6 +68,7 @@ export default function Main(
               city={city}
               offers={offers}
               selectedOffer={selectedOffer}
+              extraClass="cities__map"
             />
           </div>
         </div>

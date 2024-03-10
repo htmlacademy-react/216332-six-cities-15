@@ -8,7 +8,7 @@ import PrivateRoute from './components/private-route';
 import {Offer} from './types/offer';
 import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {Cities} from './const';
+import {CitiesType} from './const';
 import {City} from './types/city';
 import {Comment} from './types/comment';
 
@@ -20,7 +20,7 @@ type AppProps = {
 
 export default function App({offers, cities, comments}: AppProps) {
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
-  const [selectedCity, setSelectedCity] = useState<string>(Cities.Amsterdam);
+  const [selectedCity, setSelectedCity] = useState<string>(CitiesType.Amsterdam);
 
   const onMouseEnterHandler = (id: string) => {
     const currentOffer = offers.find((offer) => offer.id === id);
@@ -74,7 +74,8 @@ export default function App({offers, cities, comments}: AppProps) {
           path={`${AppRoute.Offer}/:offerId`}
           element={
             <OfferPage
-              offers={offers}
+              city={currentCity}
+              offers={filteredOffers}
               comments={comments}
               authorizationStatus={AuthorizationStatus.NoAuth}
             />

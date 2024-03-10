@@ -2,14 +2,29 @@ import {OfferPreview} from '../types/offer-preview';
 import {calculateRating} from '../helpers/calculateRating';
 import {useNavigate} from 'react-router-dom';
 import {AppRoute} from '../const';
+import {CardType} from '../const';
+import classNames from 'classnames';
 
 type PlaceCardProps = {
   offer: OfferPreview;
-  onMouseEnter: (id: string) => void;
+  variant: CardType;
+  onMouseEnter: (id?: string) => void;
   onMouseLeave: () => void;
 }
 
-export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCardProps) {
+const NORMAL_WIDTH = 260;
+const SMALL_WIDTH = 150;
+const NORMAL_HEIGHT = 200;
+const SMALL_HEIGHT = 110;
+
+export default function PlaceCard(
+  {
+    offer,
+    variant,
+    onMouseEnter = () => {},
+    onMouseLeave = () => {}
+  }: PlaceCardProps) {
+
   const {
     id,
     title,
@@ -19,15 +34,25 @@ export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCard
     isPremium,
     rating,
   } = offer;
+
   const navigate = useNavigate();
+
   return (
     <article
-      className="cities__card place-card"
+      className={classNames({
+        'place-card': true,
+        'cities__card': CardType.Cities === variant,
+        'favorites__card': CardType.Favorite === variant,
+        'near-places__card': CardType.Near === variant,
+      })}
       onMouseEnter={() => onMouseEnter(id)}
       onMouseLeave={() => onMouseLeave()}
       onClick={(e) => {
         e.preventDefault();
         navigate(`${AppRoute.Offer}/${id}`);
+        if (window) {
+          window.scrollTo({top: 0, left: 0});
+        }
       }}
     >
       {
@@ -36,14 +61,29 @@ export default function PlaceCard({offer, onMouseEnter, onMouseLeave}: PlaceCard
             <span>Premium</span>
           </div>
       }
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div
+        className={classNames({
+          'place-card__image-wrapper': true,
+          'cities__image-wrapper': CardType.Cities === variant,
+          'favorites__image-wrapper': CardType.Favorite === variant,
+          'near-places__image-wrapper': CardType.Near === variant,
+        })}
+      >
         <a href="#">
-          <img className="place-card__image" src={previewImage} width="260" height="200"
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={CardType.Favorite === variant ? SMALL_WIDTH : NORMAL_WIDTH}
+            height={CardType.Favorite === variant ? SMALL_HEIGHT : NORMAL_HEIGHT}
             alt="Place image"
           />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={classNames({
+        'place-card__info': true,
+        'favorites__card-info': CardType.Favorite === variant,
+      })}
+      >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>

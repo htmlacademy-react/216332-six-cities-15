@@ -1,8 +1,8 @@
 export enum AppRoute {
-    Root = '/',
-    Login = '/login',
-    Favorites = '/favorites',
-    Offer = '/offer',
+  Root = '/',
+  Login = '/login',
+  Favorites = '/favorites',
+  Offer = '/offer',
 }
 
 export enum AuthorizationStatus {
@@ -11,13 +11,19 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum Cities {
+export enum CitiesType {
   Paris = 'Paris',
   Cologne = 'Cologne',
   Brussels = 'Brussels',
   Amsterdam = 'Amsterdam',
   Hamburg = 'Hamburg',
   Dusseldorf = 'Dusseldorf',
+}
+
+export enum CardType {
+  Favorite = 'Favorite',
+  Near = 'Near',
+  Cities = 'Cities',
 }
 
 export const URL_MARKER_DEFAULT =

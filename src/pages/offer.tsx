@@ -9,6 +9,7 @@ import {Comment} from '../types/comment';
 import {City} from '../types/city';
 import Map from '../components/map';
 import PlacesList from '../components/places-list';
+import {filterOffers} from '../helpers/filterOffers';
 
 type OfferPageProps = {
   offers: Offer[];
@@ -28,6 +29,7 @@ export default function OfferPage(
   const {offerId} = useParams();
   const currentOffer: Offer = offers.find((offer : Offer): boolean => offer?.id === offerId);
   const actualComments: Comment[] = comments.filter((comment : Comment): boolean => comment?.offerId === offerId);
+  const nearOffer = filterOffers(offers, city, currentOffer);
 
   const {
     title,
@@ -138,7 +140,7 @@ export default function OfferPage(
         </div>
         <Map
           city={city}
-          offers={offers}
+          offers={[...nearOffer, currentOffer]}
           selectedOffer={currentOffer}
           extraClass="offer__map"
         />
@@ -147,7 +149,7 @@ export default function OfferPage(
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <PlacesList
-            offers={offers}
+            offers={nearOffer}
             variant={CardType.Near}
             extraClass="near-places__list"
           />

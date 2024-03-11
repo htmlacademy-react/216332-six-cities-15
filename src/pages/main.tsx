@@ -1,10 +1,12 @@
 import Container from '../components/container';
-import {Offer} from '../types/offer';
 import PlacesList from '../components/places-list';
 import Map from '../components/map';
-import {City} from '../types/city';
 import Tabs from '../components/tabs';
+import PlacesSorting from '../components/places-sorting';
+
+import {Offer} from '../types/offer';
 import {CardType} from '../const';
+import {City} from '../types/city';
 
 type MainProps = {
   offers: Offer[];
@@ -40,21 +42,7 @@ export default function Main(
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{offers.length} places to stay in {city.name}</b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                <svg className="places__sorting-arrow" width="7" height="4">
-                  <use xlinkHref="#icon-arrow-select"></use>
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--closed">
-                <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                <li className="places__option" tabIndex="0">Price: low to high</li>
-                <li className="places__option" tabIndex="0">Price: high to low</li>
-                <li className="places__option" tabIndex="0">Top rated first</li>
-              </ul>
-            </form>
+            <PlacesSorting/>
             <PlacesList
               offers={offers}
               variant={CardType.Cities}

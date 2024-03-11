@@ -42,8 +42,8 @@ export default function PlaceCard(
       className={classNames({
         'place-card': true,
         'cities__card': CardType.Cities === variant,
-        'favorites__card': CardType.Favorite === variant,
-        'near-places__card': CardType.Near === variant,
+        'favorites__card': CardType.Favorites === variant,
+        'near-places__card': CardType.NearPlaces === variant,
       })}
       onMouseEnter={() => onMouseEnter(id)}
       onMouseLeave={() => onMouseLeave()}
@@ -65,23 +65,23 @@ export default function PlaceCard(
         className={classNames({
           'place-card__image-wrapper': true,
           'cities__image-wrapper': CardType.Cities === variant,
-          'favorites__image-wrapper': CardType.Favorite === variant,
-          'near-places__image-wrapper': CardType.Near === variant,
+          'favorites__image-wrapper': CardType.Favorites === variant,
+          'near-places__image-wrapper': CardType.NearPlaces === variant,
         })}
       >
         <a href="#">
           <img
             className="place-card__image"
             src={previewImage}
-            width={CardType.Favorite === variant ? SMALL_WIDTH : NORMAL_WIDTH}
-            height={CardType.Favorite === variant ? SMALL_HEIGHT : NORMAL_HEIGHT}
+            width={CardType.Favorites === variant ? SMALL_WIDTH : NORMAL_WIDTH}
+            height={CardType.Favorites === variant ? SMALL_HEIGHT : NORMAL_HEIGHT}
             alt="Place image"
           />
         </a>
       </div>
       <div className={classNames({
         'place-card__info': true,
-        'favorites__card-info': CardType.Favorite === variant,
+        'favorites__card-info': CardType.Favorites === variant,
       })}
       >
         <div className="place-card__price-wrapper">

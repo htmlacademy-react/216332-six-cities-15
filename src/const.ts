@@ -21,9 +21,9 @@ export enum CitiesType {
 }
 
 export enum CardType {
-  Favorite = 'Favorite',
-  Near = 'Near',
-  Cities = 'Cities',
+  Favorites = 'favorites',
+  NearPlaces = 'near-places',
+  Cities = 'cities',
 }
 
 export const URL_MARKER_DEFAULT =

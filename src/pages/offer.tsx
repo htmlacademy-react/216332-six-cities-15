@@ -6,14 +6,12 @@ import OfferForm from '../components/offer-form';
 import {AuthorizationStatus, CardType} from '../const';
 import ReviewsList from '../components/reviews-list';
 import {Comment} from '../types/comment';
-import {City} from '../types/city';
 import Map from '../components/map';
 import PlacesList from '../components/places-list';
 import {filterOffers} from '../helpers/filterOffers';
 
 type OfferPageProps = {
   offers: Offer[];
-  city: City;
   comments: Comment[];
   authorizationStatus: AuthorizationStatus;
 }
@@ -23,13 +21,12 @@ export default function OfferPage(
     offers,
     comments,
     authorizationStatus,
-    city,
   } : OfferPageProps) {
 
   const {offerId} = useParams();
   const currentOffer: Offer = offers.find((offer : Offer): boolean => offer?.id === offerId);
   const actualComments: Comment[] = comments.filter((comment : Comment): boolean => comment?.offerId === offerId);
-  const nearOffer = filterOffers(offers, city, currentOffer);
+  const nearOffer = filterOffers(offers, currentOffer);
 
   const {
     title,
@@ -139,7 +136,7 @@ export default function OfferPage(
           </div>
         </div>
         <Map
-          city={city}
+          city={currentOffer.city}
           offers={[...nearOffer, currentOffer]}
           selectedOffer={currentOffer}
           extraClass="offer__map"
@@ -150,7 +147,7 @@ export default function OfferPage(
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <PlacesList
             offers={nearOffer}
-            variant={CardType.Near}
+            variant={CardType.NearPlaces}
             extraClass="near-places__list"
           />
         </section>

@@ -74,7 +74,6 @@ export default function App({offers, cities, comments}: AppProps) {
           path={`${AppRoute.Offer}/:offerId`}
           element={
             <OfferPage
-              city={currentCity}
               offers={filteredOffers}
               comments={comments}
               authorizationStatus={AuthorizationStatus.NoAuth}

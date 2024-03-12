@@ -15,16 +15,16 @@ export default function PlacesList(
     offers,
     variant,
     extraClass,
-    onMouseEnter = () => {},
-    onMouseLeave = () => {},
+    onMouseEnter,
+    onMouseLeave,
   }: PlacesListProps) {
 
   const onMouseEnterHandler = (id: string) => {
-    onMouseEnter(id);
+    onMouseEnter?.(id);
   };
 
   const onMouseLeaveHandler = () => {
-    onMouseLeave('');
+    onMouseLeave?.('');
   };
 
   return (

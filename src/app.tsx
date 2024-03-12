@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import Main from './pages/main';
 import Favorites from './pages/favorites';
 import Login from './pages/login';
@@ -8,36 +7,12 @@ import PrivateRoute from './components/private-route';
 import {Offer} from './types/offer';
 import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {CitiesType} from './const';
-import {City} from './types/city';
-import {Comment} from './types/comment';
 
 type AppProps = {
   offers: Offer[];
-  comments: Comment[];
-  cities: City[];
 }
 
-export default function App({offers, cities, comments}: AppProps) {
-  const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
-  const [selectedCity, setSelectedCity] = useState<string>(CitiesType.Amsterdam);
-
-  const onMouseEnterHandler = (id: string) => {
-    const currentOffer = offers.find((offer) => offer.id === id);
-
-    setSelectedOffer(currentOffer);
-  };
-
-  const currentCity: City = cities.find((city) => city.name === selectedCity);
-  const filteredOffers: Offer[] | [] = offers.filter((offer: Offer) => offer.city.name === selectedCity);
-
-  const onMouseLeaveHandler = () => {
-    setSelectedOffer(null);
-  };
-
-  const selectedCityHandler = (city : string) => {
-    setSelectedCity(city);
-  };
+export default function App({offers}: AppProps) {
 
   return (
     <BrowserRouter>
@@ -46,13 +21,7 @@ export default function App({offers, cities, comments}: AppProps) {
           path={AppRoute.Root}
           element={
             <Main
-              offers={filteredOffers}
-              cities={cities}
-              selectedOffer={selectedOffer}
-              city={currentCity}
-              onMouseEnter={onMouseEnterHandler}
-              onMouseLeave={onMouseLeaveHandler}
-              onSelectedCity={selectedCityHandler}
+              offers={offers}
             />
           }
         />
@@ -74,8 +43,7 @@ export default function App({offers, cities, comments}: AppProps) {
           path={`${AppRoute.Offer}/:offerId`}
           element={
             <OfferPage
-              offers={filteredOffers}
-              comments={comments}
+              offers={offers}
               authorizationStatus={AuthorizationStatus.NoAuth}
             />
           }

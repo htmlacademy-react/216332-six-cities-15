@@ -5,56 +5,66 @@ import Tabs from '../components/tabs';
 import PlacesSorting from '../components/places-sorting';
 
 import {Offer} from '../types/offer';
-import {CardType} from '../const';
+import {CardType, CitiesType} from '../const';
 import {City} from '../types/city';
+import {useState} from 'react';
+import {cities} from '../mocks/cities';
 
 type MainProps = {
   offers: Offer[];
-  city: City;
-  cities: City[];
-  selectedOffer: Offer | null;
-  onMouseEnter: (id: string) => void;
-  onMouseLeave: (id: string) => void;
-  onSelectedCity: (name: string) => void;
 }
 
 export default function Main(
   {
     offers,
-    city,
-    cities,
-    selectedOffer,
-    onSelectedCity,
-    onMouseEnter,
-    onMouseLeave
   }: MainProps) {
+
+  const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
+  const [selectedCity, setSelectedCity] = useState<string>(CitiesType.Amsterdam);
+
+  const onMouseEnterHandler = (id: string) => {
+    const currentOffer = offers.find((offer) => offer.id === id);
+
+    setSelectedOffer(currentOffer);
+  };
+
+  const onMouseLeaveHandler = () => {
+    setSelectedOffer(null);
+  };
+
+  const selectedCityHandler = (city : string) => {
+    setSelectedCity(city);
+  };
+
+  const currentCity: City = cities.find((city) => city.name === selectedCity);
+  const filteredOffers: Offer[] | [] = offers.filter((offer: Offer) => offer.city.name === selectedCity);
 
   return (
     <Container extraClass="page--gray page--main" classMain="page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <Tabs
         cities={cities}
-        onSelectedCity={onSelectedCity}
-        city={city}
+        onSelectedCity={selectedCityHandler}
+        city={currentCity}
       />
       <div className="cities">
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} places to stay in {city.name}</b>
+            <b className="places__found">{filteredOffers.length} places to stay in {currentCity.name}</b>
             <PlacesSorting/>
             <PlacesList
-              offers={offers}
+              offers={filteredOffers}
               variant={CardType.Cities}
               extraClass="cities__places-list tabs__content"
-              onMouseEnter={onMouseEnter}
-              onMouseLeave={onMouseLeave}
+              onMouseEnter={onMouseEnterHandler}
+              onMouseLeave={onMouseLeaveHandler}
             />
           </section>
           <div className="cities__right-section">
             <Map
-              city={city}
-              offers={offers}
+              city={currentCity}
+              offers={filteredOffers}
               selectedOffer={selectedOffer}
               extraClass="cities__map"
             />

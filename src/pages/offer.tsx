@@ -9,17 +9,16 @@ import {Comment} from '../types/comment';
 import Map from '../components/map';
 import PlacesList from '../components/places-list';
 import {filterOffers} from '../helpers/filterOffers';
+import {comments} from '../mocks/comments';
 
 type OfferPageProps = {
   offers: Offer[];
-  comments: Comment[];
   authorizationStatus: AuthorizationStatus;
 }
 
 export default function OfferPage(
   {
     offers,
-    comments,
     authorizationStatus,
   } : OfferPageProps) {
 

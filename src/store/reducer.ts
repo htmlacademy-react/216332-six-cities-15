@@ -1,11 +1,13 @@
 import {createReducer, current} from '@reduxjs/toolkit';
 import {offers} from '../mocks/offers';
+import {cities} from '../mocks/cities';
 import {CitiesType} from '../const';
 import {setCity, filterCity} from './action';
 import {Offer} from '../types/offer';
 
 const initialState = {
   offers,
+  cities,
   selectedCity: CitiesType.Amsterdam
 };
 

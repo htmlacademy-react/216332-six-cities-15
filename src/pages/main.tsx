@@ -8,7 +8,6 @@ import {Offer} from '../types/offer';
 import {CardType} from '../const';
 import {City} from '../types/city';
 import {useState} from 'react';
-import {cities} from '../mocks/cities';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity, filterCity} from '../store/action';
 
@@ -16,6 +15,7 @@ export default function Main() {
 
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const offers = useAppSelector((state) => state.offers);
+  const cities = useAppSelector((state) => state.cities);
   const selectedCity: string = useAppSelector((state) => state.selectedCity);
   const dispatch = useAppDispatch();
 
@@ -40,9 +40,9 @@ export default function Main() {
     <Container extraClass="page--gray page--main" classMain="page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <Tabs
-        cities={cities}
         onSelectedCity={selectedCityHandler}
         city={currentCity}
+        cities={cities}
       />
       <div className="cities">
         <div className="cities__places-container container">

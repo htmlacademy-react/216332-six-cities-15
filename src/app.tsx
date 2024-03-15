@@ -13,12 +13,17 @@ type AppProps = {
 }
 
 export default function App({offers}: AppProps) {
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<Main offers={offers} />}
+          element={
+            <Main
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoute.Login}
@@ -36,7 +41,12 @@ export default function App({offers}: AppProps) {
         />
         <Route
           path={`${AppRoute.Offer}/:offerId`}
-          element={<OfferPage offers={offers}/>}
+          element={
+            <OfferPage
+              offers={offers}
+              authorizationStatus={AuthorizationStatus.NoAuth}
+            />
+          }
         />
         <Route
           path="*"

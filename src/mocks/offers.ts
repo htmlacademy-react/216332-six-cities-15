@@ -17,16 +17,16 @@ export const offers: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/15.jpg'
     ],
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
     location: {
-      latitude: 48.87561,
-      longitude: 2.375499,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     goods: [
@@ -66,16 +66,16 @@ export const offers: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/16.jpg'
     ],
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
     location: {
-      latitude: 48.834610000000005,
-      longitude: 2.364499,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 16
     },
     goods: [
@@ -110,16 +110,16 @@ export const offers: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/11.jpg'
     ],
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.85661,
-        longitude: 2.351499,
+        latitude: 52.37454,
+        longitude: 4.897976,
         zoom: 13
       }
     },
     location: {
-      latitude: 48.834610000000005,
-      longitude: 2.335499,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 16
     },
     goods: [
@@ -159,6 +159,59 @@ export const offers: Offer[] = [
       'https://15.design.htmlacademy.pro/static/hotel/6.jpg'
     ],
     city: {
+      name: 'Amsterdam',
+      location: {
+        latitude: 52.37454,
+        longitude: 4.897976,
+        zoom: 13
+      }
+    },
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 16
+    },
+    goods: [
+      'Washer',
+      'Washing machine',
+      'Coffee machine',
+      'Dishwasher',
+      'Towels',
+      'Baby seat',
+      'Air conditioning',
+      'Breakfast',
+      'Wi-Fi',
+      'Kitchen',
+      'Cable TV',
+      'Fridge'
+    ],
+    host: {
+      isPro: true,
+      name: 'Angelina',
+      avatarUrl: 'https://15.design.htmlacademy.pro/static/host/avatar-angelina.jpg'
+    },
+    isPremium: false,
+    isFavorite: false,
+    rating: 2.7,
+    bedrooms: 1,
+    maxAdults: 9
+  },
+  {
+    id: '612a6731-fcc3-4299-bff9-74dab6735bdb',
+    title: 'Loft Studio in the Central Area',
+    description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
+    type: 'hotel',
+    price: 199,
+    previewImage: 'https://15.design.htmlacademy.pro/static/hotel/5.jpg',
+    images: [
+      'https://15.design.htmlacademy.pro/static/hotel/2.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/8.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/11.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/12.jpg',
+      'https://15.design.htmlacademy.pro/static/hotel/6.jpg'
+    ],
+    city: {
       name: 'Paris',
       location: {
         latitude: 48.85661,
@@ -167,8 +220,8 @@ export const offers: Offer[] = [
       }
     },
     location: {
-      latitude: 48.87561,
-      longitude: 2.375499,
+      latitude: 48.868610000000004,
+      longitude: 2.342499,
       zoom: 16
     },
     goods: [

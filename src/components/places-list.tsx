@@ -1,31 +1,39 @@
-import {useState} from 'react';
 import {Offer} from '../types/offer';
 import PlaceCard from './place-card';
+import {CardType} from '../const';
 
 type PlacesListProps = {
   offers: Offer[];
+  extraClass?: string;
+  variant: CardType;
+  onMouseEnter: (id: string) => void;
+  onMouseLeave: (id: string) => void;
 }
 
-export default function PlacesList({offers}: PlacesListProps) {
-  const [activeOffer, setActiveOffer] = useState('');
+export default function PlacesList(
+  {
+    offers,
+    variant,
+    extraClass,
+    onMouseEnter,
+    onMouseLeave,
+  }: PlacesListProps) {
 
   const onMouseEnterHandler = (id: string) => {
-    setActiveOffer(id);
+    onMouseEnter?.(id);
   };
 
   const onMouseLeaveHandler = () => {
-    setActiveOffer('');
+    onMouseLeave?.('');
   };
 
-  // eslint-disable-next-line no-console
-  console.log(activeOffer);
-
   return (
-    <div className="cities__places-list places__list tabs__content">
+    <div className={`places__list ${extraClass ? extraClass : ''}`}>
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}
           offer={offer}
+          variant={variant}
           onMouseEnter={onMouseEnterHandler}
           onMouseLeave={onMouseLeaveHandler}
         />

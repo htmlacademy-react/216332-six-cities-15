@@ -20,9 +20,7 @@ export default function App({offers}: AppProps) {
         <Route
           path={AppRoute.Root}
           element={
-            <Main
-              offers={offers}
-            />
+            <Main/>
           }
         />
         <Route

@@ -41,7 +41,6 @@ export default function App({offers}: AppProps) {
           path={`${AppRoute.Offer}/:offerId`}
           element={
             <OfferPage
-              offers={offers}
               authorizationStatus={AuthorizationStatus.NoAuth}
             />
           }

@@ -4,29 +4,24 @@ import Map from '../components/map';
 import Tabs from '../components/tabs';
 import PlacesSorting from '../components/places-sorting';
 
-import {Offer} from '../types/offer';
 import {CardType} from '../const';
 import {City} from '../types/city';
-import {useState} from 'react';
 import {useAppDispatch, useAppSelector} from '../hooks';
-import {setCity, filterCity} from '../store/action';
+import {setCity, filterCity, selectOffer, resetOffer} from '../store/action';
 
 export default function Main() {
-
-  const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const offers = useAppSelector((state) => state.offers);
   const cities = useAppSelector((state) => state.cities);
+  const currentOffer = useAppSelector((state) => state.currentOffer);
   const selectedCity: string = useAppSelector((state) => state.selectedCity);
   const dispatch = useAppDispatch();
 
   const onMouseEnterHandler = (id: string) => {
-    const currentOffer = offers.find((offer) => offer.id === id);
-
-    setSelectedOffer(currentOffer);
+    dispatch(selectOffer({id}));
   };
 
   const onMouseLeaveHandler = () => {
-    setSelectedOffer(null);
+    dispatch(resetOffer());
   };
 
   const selectedCityHandler = (city : string) => {
@@ -62,7 +57,7 @@ export default function Main() {
             <Map
               city={currentCity}
               offers={offers}
-              selectedOffer={selectedOffer}
+              selectedOffer={currentOffer}
               extraClass="cities__map"
             />
           </div>

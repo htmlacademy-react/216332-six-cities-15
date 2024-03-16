@@ -4,15 +4,10 @@ import Login from './pages/login';
 import OfferPage from './pages/offer';
 import PageNotFound from './pages/pageNotFound';
 import PrivateRoute from './components/private-route';
-import {Offer} from './types/offer';
 import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-type AppProps = {
-  offers: Offer[];
-}
-
-export default function App({offers}: AppProps) {
+export default function App() {
 
   return (
     <BrowserRouter>
@@ -33,7 +28,7 @@ export default function App({offers}: AppProps) {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <Favorites offers={offers}/>
+              <Favorites/>
             </PrivateRoute>
           }
         />

@@ -1,14 +1,10 @@
 import Container from '../components/container';
 import Footer from '../components/footer';
 import FavoriteLocation from '../components/favorite-location';
-import {Offer} from '../types/offer';
+import {useAppSelector} from '../hooks';
 
-type FavoritesProps = {
-  offers: Offer[];
-}
-
-
-export default function Favorites({offers}: FavoritesProps) {
+export default function Favorites() {
+  const offers = useAppSelector((state) => state.offers);
   return (
     <Container classMain="page__main--favorites">
       <div className="page__favorites-container container">

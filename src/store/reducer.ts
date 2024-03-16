@@ -1,6 +1,7 @@
 import {createReducer, current} from '@reduxjs/toolkit';
 import {offers} from '../mocks/offers';
 import {cities} from '../mocks/cities';
+import {comments} from '../mocks/comments';
 import {CitiesType} from '../const';
 import {setCity, filterCity, selectOffer, resetOffer} from './action';
 import {Offer} from '../types/offer';
@@ -8,8 +9,9 @@ import {Offer} from '../types/offer';
 const initialState = {
   offers,
   cities,
-  selectedCity: CitiesType.Amsterdam,
+  selectedCity: CitiesType.Paris,
   currentOffer: null,
+  comments: comments
 };
 
 

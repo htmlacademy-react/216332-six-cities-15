@@ -9,7 +9,6 @@ import {Comment} from '../types/comment';
 import Map from '../components/map';
 import PlacesList from '../components/places-list';
 import {filterOffers} from '../helpers/filterOffers';
-import {comments} from '../mocks/comments';
 import {useAppSelector} from '../hooks';
 
 type OfferPageProps = {
@@ -23,6 +22,7 @@ export default function OfferPage(
 
   const {offerId} = useParams();
   const offers = useAppSelector((state) => state.offers);
+  const comments = useAppSelector((state) => state.comments);
   const currentOffer: Offer = offers.find((offer : Offer): boolean => offer?.id === offerId);
   const actualComments: Comment[] = comments.filter((comment : Comment): boolean => comment?.offerId === offerId);
   const nearOffer = filterOffers(offers, currentOffer);

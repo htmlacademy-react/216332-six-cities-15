@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import Container from '../components/container';
 import PlacesList from '../components/places-list';
 import Map from '../components/map';
@@ -30,6 +31,12 @@ export default function Main() {
   };
 
   const currentCity: City = cities.find((city) => city.name === selectedCity);
+
+  useEffect(() => {
+    if (offers && selectedCity) {
+      dispatch(filterCity());
+    }
+  }, []);
 
   return (
     <Container extraClass="page--gray page--main" classMain="page__main--index">

@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Container from '../components/container';
 import PlacesList from '../components/places-list';
 import Map from '../components/map';
@@ -11,6 +11,7 @@ import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity, filterCity, selectOffer, resetOffer} from '../store/action';
 
 export default function Main() {
+  const [activeSort, setActiveSort] = useState(0);
   const offers = useAppSelector((state) => state.offers);
   const cities = useAppSelector((state) => state.cities);
   const currentOffer = useAppSelector((state) => state.currentOffer);
@@ -32,6 +33,10 @@ export default function Main() {
 
   const currentCity: City = cities.find((city) => city.name === selectedCity);
 
+  const onChangeSortHandler = (val: number): void => {
+    setActiveSort(val);
+  };
+
   useEffect(() => {
     if (offers && selectedCity) {
       dispatch(filterCity());
@@ -51,7 +56,10 @@ export default function Main() {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
-            <PlacesSorting/>
+            <PlacesSorting
+              active={activeSort}
+              onChangeSort={onChangeSortHandler}
+            />
             <PlacesList
               offers={offers}
               variant={CardType.Cities}

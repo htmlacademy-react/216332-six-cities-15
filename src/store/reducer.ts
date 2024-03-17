@@ -5,9 +5,18 @@ import {comments} from '../mocks/comments';
 import {CitiesType} from '../const';
 import {setCity, filterCity, selectOffer, resetOffer} from './action';
 import {Offer} from '../types/offer';
+import {City} from '../types/city';
+
+export type InitialStateType = {
+  offers: Offer[];
+  cities: City[];
+  selectedCity: CitiesType;
+  currentOffer: Offer | null;
+  comments: Comment[];
+};
 
 const initialState = {
-  offers,
+  offers: offers,
   cities,
   selectedCity: CitiesType.Paris,
   currentOffer: null,

@@ -1,16 +1,56 @@
 import PlacesOptions from './places-options';
+import {SORT_OPTIONS} from '../const';
+import {useEffect, useState} from 'react';
 
-export default function PlacesSorting() {
+type PlacesSortingProps = {
+  active: number;
+  onChangeSort: (val: number) => void;
+}
+
+export default function PlacesSorting({active, onChangeSort}: PlacesSortingProps) {
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisibleHandler = () => {
+    setVisible((prev) => !prev);
+  };
+
+  const setVisibleHandler = (val: boolean) => {
+    setVisible(val);
+  };
+
+  useEffect(() => {
+    const onEscKeyDown = (evt: KeyboardEvent) => {
+      if (evt.key === 'Escape' && visible) {
+        evt.preventDefault();
+        setVisibleHandler(false);
+      }
+    };
+
+    document.addEventListener('keydown', onEscKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onEscKeyDown);
+    };
+  }, [visible]);
+
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form
+      className="places__sorting"
+      action="#"
+      method="get"
+    >
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex="0">
-        Popular
+      <span className="places__sorting-type" tabIndex={0} onClick={toggleVisibleHandler}>
+        {SORT_OPTIONS[active]}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <PlacesOptions/>
+      <PlacesOptions
+        onChangeSort={onChangeSort}
+        onToggleVisible={toggleVisibleHandler}
+        active={active}
+        visible={visible}
+      />
     </form>
   );
 }

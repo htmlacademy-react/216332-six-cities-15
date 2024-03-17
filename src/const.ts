@@ -26,8 +26,17 @@ export enum CardType {
   Cities = 'cities',
 }
 
+export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
+
+export const enum SortOption {
+  Popular,
+  PriceLowToHigh,
+  PriceHighToLow,
+  TopRatedFirst
+}
+
 export const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+  '/img/pin.svg';
 
 export const URL_MARKER_CURRENT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+  '/img/pin-active.svg';

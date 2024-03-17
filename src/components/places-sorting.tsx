@@ -14,19 +14,16 @@ export default function PlacesSorting({active, onChangeSort}: PlacesSortingProps
     setVisible((prev) => !prev);
   };
 
-  const setVisibleHandler = (val: boolean) => {
-    setVisible(val);
-  };
-
   useEffect(() => {
     const onEscKeyDown = (evt: KeyboardEvent) => {
       if (evt.key === 'Escape' && visible) {
         evt.preventDefault();
-        setVisibleHandler(false);
+        toggleVisibleHandler();
       }
     };
 
     document.addEventListener('keydown', onEscKeyDown);
+
     return () => {
       document.removeEventListener('keydown', onEscKeyDown);
     };

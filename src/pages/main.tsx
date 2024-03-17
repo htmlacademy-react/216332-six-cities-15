@@ -9,6 +9,7 @@ import {CardType} from '../const';
 import {City} from '../types/city';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity, filterCity, selectOffer, resetOffer} from '../store/action';
+import {sortOffers} from '../helpers/sortOffers';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(0);
@@ -37,10 +38,10 @@ export default function Main() {
     setActiveSort(val);
   };
 
+  const sortedOffers = sortOffers(offers, activeSort);
+
   useEffect(() => {
-    if (offers && selectedCity) {
-      dispatch(filterCity());
-    }
+    dispatch(filterCity());
   }, []);
 
   return (
@@ -55,13 +56,13 @@ export default function Main() {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} places to stay in {currentCity.name}</b>
+            <b className="places__found">{offers.length} {offers.length <= 1 ? 'place' : 'places'} to stay in {currentCity.name}</b>
             <PlacesSorting
               active={activeSort}
               onChangeSort={onChangeSortHandler}
             />
             <PlacesList
-              offers={offers}
+              offers={sortedOffers}
               variant={CardType.Cities}
               extraClass="cities__places-list tabs__content"
               onMouseEnter={onMouseEnterHandler}

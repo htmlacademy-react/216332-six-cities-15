@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import Container from '../components/container';
 import PlacesList from '../components/places-list';
 import Map from '../components/map';
@@ -8,12 +8,13 @@ import PlacesSorting from '../components/places-sorting';
 import {CardType} from '../const';
 import {City} from '../types/city';
 import {useAppDispatch, useAppSelector} from '../hooks';
-import {setCity, filterCity, selectOffer, resetOffer} from '../store/action';
+import {setCity, selectOffer, resetOffer} from '../store/action';
 import {sortOffers} from '../helpers/sortOffers';
+import {offers} from '../mocks/offers';
+import {Offer} from '../types/offer';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(0);
-  const offers = useAppSelector((state) => state.offers);
   const cities = useAppSelector((state) => state.cities);
   const currentOffer = useAppSelector((state) => state.currentOffer);
   const selectedCity: string = useAppSelector((state) => state.selectedCity);
@@ -29,20 +30,17 @@ export default function Main() {
 
   const selectedCityHandler = (city : string) => {
     dispatch(setCity({selectedCity: city}));
-    dispatch(filterCity());
   };
-
-  const currentCity: City = cities.find((city) => city.name === selectedCity);
 
   const onChangeSortHandler = (val: number): void => {
     setActiveSort(val);
   };
 
-  const sortedOffers = sortOffers(offers, activeSort);
+  const currentCity: City = cities.find((city) => city.name === selectedCity);
 
-  useEffect(() => {
-    dispatch(filterCity());
-  }, []);
+  const filteredOffers = offers.filter((offer: Offer) => offer.city.name === selectedCity);
+
+  const sortedOffers = sortOffers(filteredOffers, activeSort);
 
   return (
     <Container extraClass="page--gray page--main" classMain="page__main--index">
@@ -56,7 +54,7 @@ export default function Main() {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} {offers.length <= 1 ? 'place' : 'places'} to stay in {currentCity.name}</b>
+            <b className="places__found">{filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity.name}</b>
             <PlacesSorting
               active={activeSort}
               onChangeSort={onChangeSortHandler}
@@ -72,7 +70,7 @@ export default function Main() {
           <div className="cities__right-section">
             <Map
               city={currentCity}
-              offers={offers}
+              offers={filteredOffers}
               selectedOffer={currentOffer}
               extraClass="cities__map"
             />

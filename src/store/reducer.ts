@@ -1,9 +1,9 @@
-import {createReducer, current} from '@reduxjs/toolkit';
+import {createReducer} from '@reduxjs/toolkit';
 import {offers} from '../mocks/offers';
 import {cities} from '../mocks/cities';
 import {comments} from '../mocks/comments';
 import {CitiesType} from '../const';
-import {setCity, filterCity, selectOffer, resetOffer} from './action';
+import {setCity, selectOffer, resetOffer} from './action';
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
 
@@ -29,10 +29,6 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setCity, (state, action) => {
       const {selectedCity} = action.payload;
       state.selectedCity = selectedCity;
-    })
-    .addCase(filterCity, (state) => {
-      const {selectedCity}: string = current(state);
-      state.offers = offers.filter((offer: Offer) => offer.city.name === selectedCity);
     })
     .addCase(selectOffer, (state, action) => {
       const {id} = action.payload;

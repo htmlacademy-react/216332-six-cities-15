@@ -3,7 +3,7 @@ import {offers} from '../mocks/offers';
 import {cities} from '../mocks/cities';
 import {comments} from '../mocks/comments';
 import {CitiesType, AuthorizationStatus} from '../const';
-import {setCity, selectOffer, resetOffer, loadOffers, requireAuthorization} from './action';
+import {setCity, selectOffer, resetOffer, loadOffers, requireAuthorization, setError} from './action';
 
 const initialState = {
   offers: offers,
@@ -12,6 +12,7 @@ const initialState = {
   currentOffer: null,
   comments: comments,
   authorizationStatus: AuthorizationStatus.Unknown,
+  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -32,6 +33,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
     });
 });
 

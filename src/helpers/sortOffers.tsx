@@ -1,18 +1,19 @@
 import {Offer} from '../types/offer';
+import {SORT_OPTIONS} from '../const';
 
-export const sortOffers = (offers: Offer[], activeSort: number): Offer[] => {
+export const sortOffers = (offers: Offer[], activeSort: string): Offer[] => {
   let sortedOffers;
   switch (activeSort) {
-    case 0:
+    case SORT_OPTIONS.popular:
       sortedOffers = [...offers];
       break;
-    case 1:
+    case SORT_OPTIONS.priceLowToHigh:
       sortedOffers = [...offers].sort((a, b) => a.price - b.price);
       break;
-    case 2:
+    case SORT_OPTIONS.priceHighToLow:
       sortedOffers = [...offers].sort((a, b) => b.price - a.price);
       break;
-    case 3:
+    case SORT_OPTIONS.topRatedFirst:
       sortedOffers = [...offers].sort((a, b) => b.rating - a.rating);
       break;
     default:

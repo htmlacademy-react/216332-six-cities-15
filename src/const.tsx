@@ -1,3 +1,4 @@
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -26,14 +27,16 @@ export enum CardType {
   Cities = 'cities',
 }
 
-export const SORT_OPTIONS = ['Popular', 'Price: low to high', 'Price: high to low', 'Top rated first'];
-
-export const enum SortOption {
-  Popular,
-  PriceLowToHigh,
-  PriceHighToLow,
-  TopRatedFirst
+interface SORT_OPTIONS_INTERFACE {
+  [name: string]: string;
 }
+
+export const SORT_OPTIONS: SORT_OPTIONS_INTERFACE = {
+  popular: 'Popular',
+  priceLowToHigh: 'Price: low to high',
+  priceHighToLow: 'Price: high to low',
+  topRatedFirst: 'Top rated first'
+};
 
 export const URL_MARKER_DEFAULT =
   '/img/pin.svg';

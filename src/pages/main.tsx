@@ -5,7 +5,7 @@ import Map from '../components/map';
 import Tabs from '../components/tabs';
 import PlacesSorting from '../components/places-sorting';
 
-import {CardType} from '../const';
+import {SORT_OPTIONS, CardType} from '../const';
 import {City} from '../types/city';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity, selectOffer, resetOffer} from '../store/action';
@@ -14,7 +14,7 @@ import {offers} from '../mocks/offers';
 import {Offer} from '../types/offer';
 
 export default function Main() {
-  const [activeSort, setActiveSort] = useState(0);
+  const [activeSort, setActiveSort] = useState(SORT_OPTIONS.popular);
   const cities = useAppSelector((state) => state.cities);
   const currentOffer = useAppSelector((state) => state.currentOffer);
   const selectedCity: string = useAppSelector((state) => state.selectedCity);
@@ -32,8 +32,8 @@ export default function Main() {
     dispatch(setCity({selectedCity: city}));
   };
 
-  const onChangeSortHandler = (val: number): void => {
-    setActiveSort(val);
+  const onChangeSortHandler = (data: string): void => {
+    setActiveSort(data);
   };
 
   const currentCity: City = cities.find((city) => city.name === selectedCity);

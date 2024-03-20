@@ -2,10 +2,10 @@ import {SORT_OPTIONS} from '../const';
 import classNames from 'classnames';
 
 type PlacesOptionsProps = {
-  active: number;
+  active: string;
   visible: boolean;
   onToggleVisible: () => void;
-  onChangeSort: (val: number) => void;
+  onChangeSort: (val: string) => void;
 }
 
 export default function PlacesOptions({onChangeSort, onToggleVisible, active, visible}: PlacesOptionsProps) {
@@ -18,16 +18,16 @@ export default function PlacesOptions({onChangeSort, onToggleVisible, active, vi
         'places__options--closed': !visible,
       })}
     >
-      {SORT_OPTIONS.map((el, id) => (
+      {Object.values(SORT_OPTIONS).map((el) => (
         <li
           key={el}
           className={classNames({
             'places__option': true,
-            'places__option--active': active === id,
+            'places__option--active': active === el,
           })}
           tabIndex={0}
           onClick={() => {
-            onChangeSort(id);
+            onChangeSort(el);
             onToggleVisible();
           }}
         >

@@ -7,17 +7,21 @@ import {setCity, selectOffer, resetOffer} from './action';
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
 
-export type InitialStateType = {
-  offers: Offer[];
-  cities: City[];
+type Offers = Offer[];
+type Cities = City[];
+type Comments = Comment[];
+
+type InitialStateType = {
+  offers: Offers;
+  cities: Cities;
   selectedCity: CitiesType;
   currentOffer: Offer | null;
-  comments: Comment[];
+  comments: Comments;
 };
 
 const initialState = {
   offers: offers,
-  cities,
+  cities: cities,
   selectedCity: CitiesType.Paris,
   currentOffer: null,
   comments: comments

@@ -1,10 +1,9 @@
 import PlacesOptions from './places-options';
-import {SORT_OPTIONS} from '../const';
 import {useEffect, useState} from 'react';
 
 type PlacesSortingProps = {
-  active: number;
-  onChangeSort: (val: number) => void;
+  active: string;
+  onChangeSort: (val: string) => void;
 }
 
 export default function PlacesSorting({active, onChangeSort}: PlacesSortingProps) {
@@ -37,7 +36,7 @@ export default function PlacesSorting({active, onChangeSort}: PlacesSortingProps
     >
       <span className="places__sorting-caption">Sort by</span>
       <span className="places__sorting-type" tabIndex={0} onClick={toggleVisibleHandler}>
-        {SORT_OPTIONS[active]}
+        {active}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>

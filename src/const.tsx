@@ -1,3 +1,4 @@
+
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -26,8 +27,19 @@ export enum CardType {
   Cities = 'cities',
 }
 
+interface SORT_OPTIONS_INTERFACE {
+  [name: string]: string;
+}
+
+export const SORT_OPTIONS: SORT_OPTIONS_INTERFACE = {
+  popular: 'Popular',
+  priceLowToHigh: 'Price: low to high',
+  priceHighToLow: 'Price: high to low',
+  topRatedFirst: 'Top rated first'
+};
+
 export const URL_MARKER_DEFAULT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+  '/img/pin.svg';
 
 export const URL_MARKER_CURRENT =
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+  '/img/pin-active.svg';

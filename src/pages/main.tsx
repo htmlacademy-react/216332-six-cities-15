@@ -3,21 +3,24 @@ import Container from '../components/container';
 import PlacesList from '../components/places-list';
 import Map from '../components/map';
 import Tabs from '../components/tabs';
+import Loader from '../components/loader';
 import PlacesSorting from '../components/places-sorting';
 
-import {SORT_OPTIONS, CardType} from '../const';
+import {SORT_OPTIONS, CardType, AuthorizationStatus} from '../const';
 import {City} from '../types/city';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity, selectOffer, resetOffer} from '../store/action';
 import {sortOffers} from '../helpers/sortOffers';
-import {offers} from '../mocks/offers';
 import {Offer} from '../types/offer';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(SORT_OPTIONS.popular);
   const cities = useAppSelector((state) => state.cities);
+  const offers = useAppSelector((state) => state.offers);
   const currentOffer = useAppSelector((state) => state.currentOffer);
   const selectedCity: string = useAppSelector((state) => state.selectedCity);
+  const authorizationStatus: AuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isOffersDataLoading: boolean = useAppSelector((state) => state.isOffersDataLoading);
   const dispatch = useAppDispatch();
 
   const onMouseEnterHandler = (id: string) => {
@@ -59,13 +62,17 @@ export default function Main() {
               active={activeSort}
               onChangeSort={onChangeSortHandler}
             />
-            <PlacesList
-              offers={sortedOffers}
-              variant={CardType.Cities}
-              extraClass="cities__places-list tabs__content"
-              onMouseEnter={onMouseEnterHandler}
-              onMouseLeave={onMouseLeaveHandler}
-            />
+            {
+              (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) ?
+                <Loader /> :
+                <PlacesList
+                  offers={sortedOffers}
+                  variant={CardType.Cities}
+                  extraClass="cities__places-list tabs__content"
+                  onMouseEnter={onMouseEnterHandler}
+                  onMouseLeave={onMouseLeaveHandler}
+                />
+            }
           </section>
           <div className="cities__right-section">
             <Map

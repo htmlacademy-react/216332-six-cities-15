@@ -6,8 +6,10 @@ import PageNotFound from './pages/pageNotFound';
 import PrivateRoute from './components/private-route';
 import {AppRoute, AuthorizationStatus} from './const';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {useAppSelector} from './hooks';
 
 export default function App() {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
     <BrowserRouter>
@@ -26,7 +28,7 @@ export default function App() {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={authorizationStatus}
             >
               <Favorites/>
             </PrivateRoute>

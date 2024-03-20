@@ -9,3 +9,4 @@ export const resetOffer = createAction('offer/resetOffer');
 export const loadOffers = createAction<Offer[]>('offer/loadOffers');
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 export const setError = createAction<string | null>('status/setError');
+export const setOffersDataLoadingStatus = createAction<boolean>('data/setOffersDataLoadingStatus');

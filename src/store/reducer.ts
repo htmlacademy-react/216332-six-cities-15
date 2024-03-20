@@ -2,31 +2,17 @@ import {createReducer} from '@reduxjs/toolkit';
 import {offers} from '../mocks/offers';
 import {cities} from '../mocks/cities';
 import {comments} from '../mocks/comments';
-import {CitiesType} from '../const';
-import {setCity, selectOffer, resetOffer} from './action';
-import {Offer} from '../types/offer';
-import {City} from '../types/city';
-
-type Offers = Offer[];
-type Cities = City[];
-type Comments = Comment[];
-
-type InitialStateType = {
-  offers: Offers;
-  cities: Cities;
-  selectedCity: CitiesType;
-  currentOffer: Offer | null;
-  comments: Comments;
-};
+import {CitiesType, AuthorizationStatus} from '../const';
+import {setCity, selectOffer, resetOffer, loadOffers, requireAuthorization} from './action';
 
 const initialState = {
   offers: offers,
   cities: cities,
   selectedCity: CitiesType.Paris,
   currentOffer: null,
-  comments: comments
+  comments: comments,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
-
 
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -40,6 +26,12 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(resetOffer, (state) => {
       state.currentOffer = null;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.currentOffer = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 

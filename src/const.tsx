@@ -1,4 +1,3 @@
-
 export enum AppRoute {
   Root = '/',
   Login = '/login',
@@ -25,6 +24,14 @@ export enum CardType {
   Favorites = 'favorites',
   NearPlaces = 'near-places',
   Cities = 'cities',
+}
+
+export enum APIRoute {
+  Offers = '/offers',
+  Favorite = '/favorite',
+  Comments = '/comments',
+  Login = '/login',
+  Logout = '/logout',
 }
 
 interface SORT_OPTIONS_INTERFACE {

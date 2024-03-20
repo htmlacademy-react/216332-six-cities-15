@@ -1,6 +1,16 @@
 import {Link} from 'react-router-dom';
+import {useAppDispatch} from '../hooks';
+import {logoutAction} from '../store/api-actions';
+import {MouseEvent} from 'react';
 
 export default function Header() {
+  const dispatch = useAppDispatch();
+
+  const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    dispatch(logoutAction());
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -21,7 +31,7 @@ export default function Header() {
                 </a>
               </li>
               <li className="header__nav-item">
-                <a className="header__nav-link" href="#">
+                <a className="header__nav-link" href="#" onClick={handleLogout}>
                   <span className="header__signout">Sign out</span>
                 </a>
               </li>

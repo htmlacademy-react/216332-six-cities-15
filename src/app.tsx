@@ -5,14 +5,16 @@ import OfferPage from './pages/offer';
 import PageNotFound from './pages/pageNotFound';
 import PrivateRoute from './components/private-route';
 import {AppRoute, AuthorizationStatus} from './const';
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
+import HistoryRouter from './components/history-route';
+import browserHistory from './browser-history';
 import {useAppSelector} from './hooks';
 
 export default function App() {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Root}
@@ -47,6 +49,6 @@ export default function App() {
           element={<PageNotFound />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }

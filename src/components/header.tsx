@@ -1,14 +1,61 @@
 import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../hooks';
 import {logoutAction} from '../store/api-actions';
 import {MouseEvent} from 'react';
+import {useAppSelector} from '../hooks';
+import {AppRoute, AuthorizationStatus} from '../const';
+
+type LogOutLinkProps = {
+  handleLogout: (e: MouseEvent<HTMLAnchorElement>) => void;
+}
+
+type SignOutItemProps = {
+  handleLogin: (e: MouseEvent<HTMLAnchorElement>) => void;
+}
+
+const LogOutLink = ({handleLogout}: LogOutLinkProps) => (
+  <li className="header__nav-item">
+    <a className="header__nav-link" href="#" onClick={handleLogout}>
+      <span className="header__signout">Sign out</span>
+    </a>
+  </li>
+);
+
+const SignInItem = () => (
+  <li className="header__nav-item user">
+    <a className="header__nav-link header__nav-link--profile" href="#">
+      <div className="header__avatar-wrapper user__avatar-wrapper">
+      </div>
+      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+      <span className="header__favorite-count">3</span>
+    </a>
+  </li>
+);
+
+const SignOutItem = ({handleLogin}: SignOutItemProps) => (
+  <li className="header__nav-item user">
+    <a className="header__nav-link header__nav-link--profile" href="#" onClick={handleLogin}>
+      <div className="header__avatar-wrapper user__avatar-wrapper">
+      </div>
+      <span className="header__login">Sign in</span>
+    </a>
+  </li>
+);
 
 export default function Header() {
   const dispatch = useAppDispatch();
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const navigate = useNavigate();
 
   const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     dispatch(logoutAction());
+  };
+
+  const handleLogin = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    navigate(`${AppRoute.Login}`);
   };
 
   return (
@@ -22,19 +69,17 @@ export default function Header() {
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
-              <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
-                  <div className="header__avatar-wrapper user__avatar-wrapper">
-                  </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                  <span className="header__favorite-count">3</span>
-                </a>
-              </li>
-              <li className="header__nav-item">
-                <a className="header__nav-link" href="#" onClick={handleLogout}>
-                  <span className="header__signout">Sign out</span>
-                </a>
-              </li>
+              {
+                authorizationStatus === AuthorizationStatus.Auth &&
+                <>
+                  <SignInItem />
+                  <LogOutLink handleLogout={handleLogout}/>
+                </>
+              }
+              {
+                authorizationStatus !== AuthorizationStatus.Auth &&
+                <SignOutItem handleLogin={handleLogin}/>
+              }
             </ul>
           </nav>
         </div>

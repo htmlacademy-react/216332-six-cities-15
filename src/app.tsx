@@ -4,7 +4,7 @@ import Login from './pages/login';
 import OfferPage from './pages/offer';
 import PageNotFound from './pages/pageNotFound';
 import PrivateRoute from './components/private-route';
-import {AppRoute, AuthorizationStatus} from './const';
+import {AppRoute} from './const';
 import {Route, Routes} from 'react-router-dom';
 import HistoryRouter from './components/history-route';
 import browserHistory from './browser-history';
@@ -40,7 +40,7 @@ export default function App() {
           path={`${AppRoute.Offer}/:offerId`}
           element={
             <OfferPage
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={authorizationStatus}
             />
           }
         />

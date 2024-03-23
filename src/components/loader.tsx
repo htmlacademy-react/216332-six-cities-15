@@ -1,5 +1,7 @@
+import './loader.css';
+
 export default function Loader() {
   return (
-    <p>Loading ...</p>
+    <p className="loader"></p>
   );
 }

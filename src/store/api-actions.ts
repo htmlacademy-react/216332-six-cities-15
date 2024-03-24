@@ -2,7 +2,16 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state';
 import {Offer} from '../types/offer';
-import {loadOffers, requireAuthorization, setOffersDataLoadingStatus, redirectToRoute} from './action';
+import {
+  loadOffers,
+  requireAuthorization,
+  setOffersDataLoadingStatus,
+  setOfferDataLoadingStatus,
+  redirectToRoute,
+  loadCurrentOffer,
+  loadOfferComments,
+  loadOfferNearBy
+} from './action';
 import {saveToken, dropToken} from '../services/token';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
@@ -19,6 +28,60 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
     const {data} = await api.get<Offer[]>(APIRoute.Offers);
     dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOffers(data));
+  },
+);
+
+export const fetchOfferCommentsAction = createAsyncThunk<void, {id: string}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOfferComments',
+  async ({id}, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
+      dispatch(loadOfferComments(data));
+    } catch (e) {
+      dispatch(redirectToRoute(AppRoute.Root));
+    }
+    // dispatch(setOffersDataLoadingStatus(true));
+    // dispatch(setOffersDataLoadingStatus(false));
+  },
+);
+
+export const fetchOfferNearByAction = createAsyncThunk<void, {id: string}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchOfferNearBy',
+  async ({id}, {dispatch, extra: api}) => {
+    // dispatch(setOffersDataLoadingStatus(true));
+    const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${id}${APIRoute.NearBy}`);
+    // dispatch(setOffersDataLoadingStatus(false));
+    dispatch(loadOfferNearBy(data));
+  },
+);
+
+export const fetchCurrentOfferAction = createAsyncThunk<void, {id: string}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchCurrentOffer',
+  async ({id}, {dispatch, extra: api}) => {
+    try {
+      dispatch(setOfferDataLoadingStatus(true));
+      const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
+      dispatch(loadCurrentOffer(data));
+      dispatch(setOfferDataLoadingStatus(false));
+      dispatch(fetchOfferCommentsAction({id}));
+      dispatch(fetchOfferNearByAction({id}));
+    } catch (e) {
+      dispatch(redirectToRoute(AppRoute.Root));
+    }
+    // dispatch(setOffersDataLoadingStatus(true));
+    // dispatch(setOffersDataLoadingStatus(false));
   },
 );
 

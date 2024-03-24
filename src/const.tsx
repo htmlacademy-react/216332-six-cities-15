@@ -32,6 +32,7 @@ export enum APIRoute {
   Comments = '/comments',
   Login = '/login',
   Logout = '/logout',
+  NearBy = '/nearby',
 }
 
 interface SORT_OPTIONS_INTERFACE {

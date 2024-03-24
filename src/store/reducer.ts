@@ -2,16 +2,29 @@ import {createReducer, current} from '@reduxjs/toolkit';
 import {cities} from '../mocks/cities';
 import {comments} from '../mocks/comments';
 import {CitiesType, AuthorizationStatus} from '../const';
-import {setCity, selectOffer, resetOffer, loadOffers, requireAuthorization, setOffersDataLoadingStatus} from './action';
+import {
+  setCity,
+  selectOffer,
+  resetOffer,
+  loadOffers,
+  requireAuthorization,
+  setOffersDataLoadingStatus,
+  setOfferDataLoadingStatus,
+  loadCurrentOffer,
+  loadOfferComments,
+  loadOfferNearBy
+} from './action';
 
 const initialState = {
   offers: [],
   cities: cities,
   selectedCity: CitiesType.Paris,
   currentOffer: null,
-  comments: comments,
+  comments: [],
+  nearBy: [],
   authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
+  isOfferDataLoading: true,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -30,11 +43,23 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
+    .addCase(loadCurrentOffer, (state, action) => {
+      state.currentOffer = action.payload;
+    })
+    .addCase(loadOfferComments, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(loadOfferNearBy, (state, action) => {
+      state.nearBy = action.payload;
+    })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;
+    })
+    .addCase(setOfferDataLoadingStatus, (state, action) => {
+      state.isOfferDataLoading = action.payload;
     });
 });
 

@@ -8,7 +8,7 @@ import {
   setOffersDataLoadingStatus,
   setOfferDataLoadingStatus,
   redirectToRoute,
-  loadCurrentOffer,
+  loadOfferData,
   loadOfferComments,
   loadOfferNearBy
 } from './action';
@@ -16,6 +16,7 @@ import {saveToken, dropToken} from '../services/token';
 import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
+import {CommentData} from '../types/comment-data';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -49,6 +50,23 @@ export const fetchOfferCommentsAction = createAsyncThunk<void, {id: string}, {
   },
 );
 
+export const submitOfferCommentAction = createAsyncThunk<void, CommentData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/submitOfferComment',
+  async ({id, comment, rating}, {dispatch, getState, extra: api}) => {
+    try {
+      const state = getState();
+      const {data} = await api.post<Comment>(`${APIRoute.Comments}/${id}`, {comment, rating});
+      dispatch(loadOfferComments([...state.comments, data]));
+    } catch (e) {
+      dispatch(redirectToRoute(AppRoute.Root));
+    }
+  },
+);
+
 export const fetchOfferNearByAction = createAsyncThunk<void, {id: string}, {
   dispatch: AppDispatch;
   state: State;
@@ -63,25 +81,23 @@ export const fetchOfferNearByAction = createAsyncThunk<void, {id: string}, {
   },
 );
 
-export const fetchCurrentOfferAction = createAsyncThunk<void, {id: string}, {
+export const fetchOfferDataAction = createAsyncThunk<void, {id: string}, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'data/fetchCurrentOffer',
+  'data/fetchOfferData',
   async ({id}, {dispatch, extra: api}) => {
     try {
       dispatch(setOfferDataLoadingStatus(true));
       const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
-      dispatch(loadCurrentOffer(data));
+      dispatch(loadOfferData(data));
       dispatch(setOfferDataLoadingStatus(false));
       dispatch(fetchOfferCommentsAction({id}));
       dispatch(fetchOfferNearByAction({id}));
     } catch (e) {
-      dispatch(redirectToRoute(AppRoute.Root));
+      dispatch(redirectToRoute(AppRoute.NotFound));
     }
-    // dispatch(setOffersDataLoadingStatus(true));
-    // dispatch(setOffersDataLoadingStatus(false));
   },
 );
 

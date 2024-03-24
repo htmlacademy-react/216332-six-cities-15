@@ -1,6 +1,5 @@
 import {createReducer, current} from '@reduxjs/toolkit';
 import {cities} from '../mocks/cities';
-import {comments} from '../mocks/comments';
 import {CitiesType, AuthorizationStatus} from '../const';
 import {
   setCity,
@@ -10,7 +9,7 @@ import {
   requireAuthorization,
   setOffersDataLoadingStatus,
   setOfferDataLoadingStatus,
-  loadCurrentOffer,
+  loadOfferData,
   loadOfferComments,
   loadOfferNearBy
 } from './action';
@@ -43,7 +42,7 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(loadOffers, (state, action) => {
       state.offers = action.payload;
     })
-    .addCase(loadCurrentOffer, (state, action) => {
+    .addCase(loadOfferData, (state, action) => {
       state.currentOffer = action.payload;
     })
     .addCase(loadOfferComments, (state, action) => {

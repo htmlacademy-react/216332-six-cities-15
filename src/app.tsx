@@ -46,7 +46,7 @@ export default function App() {
         />
         <Route
           path="*"
-          element={<PageNotFound />}
+          element={<PageNotFound type='page'/>}
         />
       </Routes>
     </HistoryRouter>

@@ -10,7 +10,7 @@ import PlacesList from '../components/places-list';
 import {useAppSelector} from '../hooks';
 import {useAppDispatch} from '../hooks';
 import {useLayoutEffect} from 'react';
-import {fetchCurrentOfferAction} from '../store/api-actions';
+import {fetchOfferDataAction} from '../store/api-actions';
 import Loader from '../components/loader';
 
 type OfferPageProps = {
@@ -30,7 +30,7 @@ export default function OfferPage(
   const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
-    dispatch(fetchCurrentOfferAction({id: offerId}));
+    dispatch(fetchOfferDataAction({id: offerId}));
   }, [offerId]);
 
   return (
@@ -124,7 +124,7 @@ export default function OfferPage(
                   <ReviewsList comments={comments}>
                     {
                       authorizationStatus === AuthorizationStatus.Auth &&
-                      <OfferForm/>
+                      <OfferForm id={offerId}/>
                     }
                   </ReviewsList>
                 </div>

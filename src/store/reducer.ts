@@ -1,32 +1,30 @@
-import {createReducer} from '@reduxjs/toolkit';
-import {offers} from '../mocks/offers';
+import {createReducer, current} from '@reduxjs/toolkit';
 import {cities} from '../mocks/cities';
-import {comments} from '../mocks/comments';
-import {CitiesType} from '../const';
-import {setCity, selectOffer, resetOffer} from './action';
-import {Offer} from '../types/offer';
-import {City} from '../types/city';
-
-type Offers = Offer[];
-type Cities = City[];
-type Comments = Comment[];
-
-type InitialStateType = {
-  offers: Offers;
-  cities: Cities;
-  selectedCity: CitiesType;
-  currentOffer: Offer | null;
-  comments: Comments;
-};
+import {CitiesType, AuthorizationStatus} from '../const';
+import {
+  setCity,
+  selectOffer,
+  resetOffer,
+  loadOffers,
+  requireAuthorization,
+  setOffersDataLoadingStatus,
+  setOfferDataLoadingStatus,
+  loadOfferData,
+  loadOfferComments,
+  loadOfferNearBy
+} from './action';
 
 const initialState = {
-  offers: offers,
+  offers: [],
   cities: cities,
   selectedCity: CitiesType.Paris,
   currentOffer: null,
-  comments: comments
+  comments: [],
+  nearBy: [],
+  authorizationStatus: AuthorizationStatus.Unknown,
+  isOffersDataLoading: false,
+  isOfferDataLoading: true,
 };
-
 
 const reducer = createReducer(initialState, (builder) => {
   builder
@@ -36,10 +34,31 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(selectOffer, (state, action) => {
       const {id} = action.payload;
-      state.currentOffer = offers.find((offer) => offer.id === id);
+      state.currentOffer = current(state.offers).find((offer) => offer.id === id);
     })
     .addCase(resetOffer, (state) => {
       state.currentOffer = null;
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(loadOfferData, (state, action) => {
+      state.currentOffer = action.payload;
+    })
+    .addCase(loadOfferComments, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(loadOfferNearBy, (state, action) => {
+      state.nearBy = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(setOffersDataLoadingStatus, (state, action) => {
+      state.isOffersDataLoading = action.payload;
+    })
+    .addCase(setOfferDataLoadingStatus, (state, action) => {
+      state.isOfferDataLoading = action.payload;
     });
 });
 

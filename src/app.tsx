@@ -4,13 +4,17 @@ import Login from './pages/login';
 import OfferPage from './pages/offer';
 import PageNotFound from './pages/pageNotFound';
 import PrivateRoute from './components/private-route';
-import {AppRoute, AuthorizationStatus} from './const';
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import {AppRoute} from './const';
+import {Route, Routes} from 'react-router-dom';
+import HistoryRouter from './components/history-route';
+import browserHistory from './browser-history';
+import {useAppSelector} from './hooks';
 
 export default function App() {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Root}
@@ -26,7 +30,7 @@ export default function App() {
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={authorizationStatus}
             >
               <Favorites/>
             </PrivateRoute>
@@ -36,15 +40,15 @@ export default function App() {
           path={`${AppRoute.Offer}/:offerId`}
           element={
             <OfferPage
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={authorizationStatus}
             />
           }
         />
         <Route
           path="*"
-          element={<PageNotFound />}
+          element={<PageNotFound type='page'/>}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }

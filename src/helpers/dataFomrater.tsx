@@ -17,7 +17,7 @@ const stringFormat = (data: Date): string => {
   return format;
 };
 
-export const formatTime = (data: string, variant: VariantProps): VariantProps => {
+export const formatTime = (data: string, variant: VariantProps): string => {
   const date = new Date(data);
   let result;
   switch (variant) {

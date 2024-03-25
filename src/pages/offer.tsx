@@ -9,7 +9,7 @@ import Map from '../components/map';
 import PlacesList from '../components/places-list';
 import {useAppSelector} from '../hooks';
 import {useAppDispatch} from '../hooks';
-import {useLayoutEffect} from 'react';
+import {useEffect} from 'react';
 import {fetchOfferDataAction} from '../store/api-actions';
 import Loader from '../components/loader';
 
@@ -29,7 +29,7 @@ export default function OfferPage(
   const currentOffer: Offer = useAppSelector((state) => state.currentOffer);
   const dispatch = useAppDispatch();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(fetchOfferDataAction({id: offerId}));
   }, [offerId]);
 

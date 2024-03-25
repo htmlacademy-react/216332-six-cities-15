@@ -45,8 +45,6 @@ export const fetchOfferCommentsAction = createAsyncThunk<void, {id: string}, {
     } catch (e) {
       dispatch(redirectToRoute(AppRoute.Root));
     }
-    // dispatch(setOffersDataLoadingStatus(true));
-    // dispatch(setOffersDataLoadingStatus(false));
   },
 );
 

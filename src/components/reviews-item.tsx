@@ -39,9 +39,9 @@ export default function ReviewsItem({comment} : ReviewsItemProps) {
         </p>
         <time
           className="reviews__time"
-          dateTime={formatTime(date,'number')}
+          dateTime={date && formatTime(date,'number')}
         >
-          {formatTime(date, 'string')}
+          {date && formatTime(date, 'string')}
         </time>
       </div>
     </li>

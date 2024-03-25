@@ -1,9 +1,12 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
 import {useAppDispatch} from '../hooks';
+import {RATING_OPTIONS} from '../const';
 import {submitOfferCommentAction} from '../store/api-actions';
+import RatingOption from './rating-option';
+import {MIN_CHARACTERS, MIN_RATING} from '../const';
 
 type OfferFormProps = {
-  id: string;
+  id: string | undefined;
 }
 
 export default function OfferForm({id}: OfferFormProps) {
@@ -14,7 +17,7 @@ export default function OfferForm({id}: OfferFormProps) {
 
   const dispatch = useAppDispatch();
 
-  const handleFieldChange = (evt: ChangeEvent<HTMLInputElement>): void => {
+  const handleFieldChange = (evt: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>): void => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
   };
@@ -39,80 +42,15 @@ export default function OfferForm({id}: OfferFormProps) {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
 
       <div className="reviews__rating-form form__rating">
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="5"
-          id="5-stars"
-          type="radio"
-          onChange={handleFieldChange}
-          checked={isChecked('5')}
-        />
-        <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="4"
-          id="4-stars"
-          type="radio"
-          onChange={handleFieldChange}
-          checked={isChecked('4')}
-        />
-        <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="3"
-          id="3-stars"
-          type="radio"
-          onChange={handleFieldChange}
-          checked={isChecked('3')}
-        />
-        <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="2"
-          id="2-stars"
-          type="radio"
-          onChange={handleFieldChange}
-          checked={isChecked('2')}
-        />
-        <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
-
-        <input
-          className="form__rating-input visually-hidden"
-          name="rating"
-          value="1"
-          id="1-stars"
-          type="radio"
-          onChange={handleFieldChange}
-          checked={isChecked('1')}
-        />
-        <label htmlFor="1-stars" className="reviews__rating-label form__rating-label" title="not bad">
-          <svg className="form__star-image" width="37" height="33">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-        </label>
+        {RATING_OPTIONS.map((option) => (
+          <RatingOption
+            key={option.name}
+            name={option.name}
+            stars={option.stars}
+            handleFieldChange={handleFieldChange}
+            isChecked={isChecked}
+          />
+        ))}
       </div>
 
       <textarea
@@ -127,12 +65,15 @@ export default function OfferForm({id}: OfferFormProps) {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe
-          your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          your stay with at least <b className="reviews__text-amount">{MIN_CHARACTERS} characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={formData.review.length < 50 || formData.rating === 0}
+          disabled={
+            formData.review.length < MIN_CHARACTERS ||
+            parseInt(formData.rating, 10) === MIN_RATING
+          }
         >
           Submit
         </button>

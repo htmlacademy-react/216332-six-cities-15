@@ -6,8 +6,8 @@ type PlacesListProps = {
   offers: Offer[];
   extraClass?: string;
   variant: CardType;
-  onMouseEnter: (id: string) => void;
-  onMouseLeave: (id: string) => void;
+  onMouseEnter: (id?: string) => void;
+  onMouseLeave: () => void;
 }
 
 export default function PlacesList(
@@ -19,14 +19,6 @@ export default function PlacesList(
     onMouseLeave,
   }: PlacesListProps) {
 
-  const onMouseEnterHandler = (id: string) => {
-    onMouseEnter?.(id);
-  };
-
-  const onMouseLeaveHandler = () => {
-    onMouseLeave?.('');
-  };
-
   return (
     <div className={`places__list ${extraClass ? extraClass : ''}`}>
       {offers.map((offer) => (
@@ -34,8 +26,8 @@ export default function PlacesList(
           key={offer.id}
           offer={offer}
           variant={variant}
-          onMouseEnter={onMouseEnterHandler}
-          onMouseLeave={onMouseLeaveHandler}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
         />
       ))}
     </div>

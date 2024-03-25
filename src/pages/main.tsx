@@ -6,7 +6,7 @@ import Tabs from '../components/tabs';
 import Loader from '../components/loader';
 import PlacesSorting from '../components/places-sorting';
 
-import {SORT_OPTIONS, CardType, AuthorizationStatus} from '../const';
+import {SORT_OPTIONS, CardType, AuthorizationStatus, CitiesType} from '../const';
 import {City} from '../types/city';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity, selectOffer, resetOffer} from '../store/action';
@@ -18,7 +18,7 @@ export default function Main() {
   const cities = useAppSelector((state) => state.cities);
   const offers = useAppSelector((state) => state.offers);
   const currentOffer = useAppSelector((state) => state.currentOffer);
-  const selectedCity: string = useAppSelector((state) => state.selectedCity);
+  const selectedCity: CitiesType = useAppSelector((state) => state.selectedCity);
   const authorizationStatus: AuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const isOffersDataLoading: boolean = useAppSelector((state) => state.isOffersDataLoading);
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ export default function Main() {
     dispatch(resetOffer());
   };
 
-  const selectedCityHandler = (city : string) => {
+  const selectedCityHandler = (city : CitiesType) => {
     dispatch(setCity({selectedCity: city}));
   };
 

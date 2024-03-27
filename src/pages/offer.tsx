@@ -30,7 +30,7 @@ export default function OfferPage(
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchOfferDataAction({id: offerId}));
+    dispatch(fetchOfferDataAction({id: offerId} as string));
   }, [offerId]);
 
   return (

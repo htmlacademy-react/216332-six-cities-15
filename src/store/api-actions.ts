@@ -17,6 +17,7 @@ import {APIRoute, AuthorizationStatus, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {CommentData} from '../types/comment-data';
+import {OfferPreview} from "../types/offer-preview";
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -32,7 +33,7 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchOfferCommentsAction = createAsyncThunk<void, {id: string}, {
+export const fetchOfferCommentsAction = createAsyncThunk<void, Comment, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -65,7 +66,7 @@ export const submitOfferCommentAction = createAsyncThunk<void, CommentData, {
   },
 );
 
-export const fetchOfferNearByAction = createAsyncThunk<void, {id: string}, {
+export const fetchOfferNearByAction = createAsyncThunk<void, OfferPreview, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -73,7 +74,7 @@ export const fetchOfferNearByAction = createAsyncThunk<void, {id: string}, {
   'data/fetchOfferNearBy',
   async ({id}, {dispatch, extra: api}) => {
     // dispatch(setOffersDataLoadingStatus(true));
-    const {data} = await api.get<Offer[]>(`${APIRoute.Offers}/${id}${APIRoute.NearBy}`);
+    const {data} = await api.get<OfferPreview[]>(`${APIRoute.Offers}/${id}${APIRoute.NearBy}`);
     // dispatch(setOffersDataLoadingStatus(false));
     dispatch(loadOfferNearBy(data));
   },

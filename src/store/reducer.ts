@@ -13,8 +13,23 @@ import {
   loadOfferComments,
   loadOfferNearBy
 } from './action';
+import {Offer} from '../types/offer';
+import {City} from '../types/city';
+import {OfferPreview} from '../types/offer-preview';
 
-const initialState = {
+type initialStateType = {
+  offers: Offer[];
+  cities: City[];
+  selectedCity: CitiesType;
+  currentOffer: Offer | null;
+  comments: Comment[];
+  nearBy: OfferPreview[];
+  authorizationStatus: AuthorizationStatus;
+  isOffersDataLoading: boolean;
+  isOfferDataLoading: boolean;
+}
+
+const initialState: initialStateType = {
   offers: [],
   cities: cities,
   selectedCity: CitiesType.Paris,

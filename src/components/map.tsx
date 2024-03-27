@@ -5,6 +5,7 @@ import useMap from '../hooks/use-map';
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
 import 'leaflet/dist/leaflet.css';
+import {OfferPreview} from "../types/offer-preview";
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -20,7 +21,7 @@ const currentCustomIcon = new Icon({
 
 type MapProps = {
   city: City;
-  offers: Offer[];
+  offers: Offer[] | OfferPreview[];
   selectedOffer: Offer | null;
   extraClass?: string;
 };

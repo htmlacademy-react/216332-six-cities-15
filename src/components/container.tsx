@@ -7,6 +7,7 @@ type TContainer = {
   classMain?: string;
 }
 
+
 export default function Container({children, extraClass, classMain}: TContainer) {
   return (
     <div className={`page ${extraClass ? extraClass : ''}`}>

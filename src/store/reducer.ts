@@ -1,12 +1,11 @@
 import {createReducer, current} from '@reduxjs/toolkit';
 import {cities} from '../mocks/cities';
-import {CitiesType, AuthorizationStatus} from '../const';
+import {CitiesType} from '../const';
 import {
   setCity,
   selectOffer,
   resetOffer,
   loadOffers,
-  requireAuthorization,
   setOffersDataLoadingStatus,
   setOfferDataLoadingStatus,
   loadOfferData,
@@ -24,7 +23,6 @@ type initialStateType = {
   currentOffer: Offer | null;
   comments: Comment[];
   nearBy: OfferPreview[];
-  authorizationStatus: AuthorizationStatus;
   isOffersDataLoading: boolean;
   isOfferDataLoading: boolean;
 }
@@ -36,7 +34,6 @@ const initialState: initialStateType = {
   currentOffer: null,
   comments: [],
   nearBy: [],
-  authorizationStatus: AuthorizationStatus.Unknown,
   isOffersDataLoading: false,
   isOfferDataLoading: true,
 };
@@ -65,9 +62,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadOfferNearBy, (state, action) => {
       state.nearBy = action.payload;
-    })
-    .addCase(requireAuthorization, (state, action) => {
-      state.authorizationStatus = action.payload;
     })
     .addCase(setOffersDataLoadingStatus, (state, action) => {
       state.isOffersDataLoading = action.payload;

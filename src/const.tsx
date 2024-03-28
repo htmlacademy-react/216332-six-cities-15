@@ -81,9 +81,12 @@ export const URL_MARKER_CURRENT =
 
 export enum NameSpace {
   Offers = 'OFFERS',
+  Near = 'NEAR',
   Offer = 'OFFER',
   Favorite = 'FAVORITE',
   User = 'USER',
   City = 'CITY',
   Comments = 'COMMENTS',
 }
+
+export const enum RequestsStatus {Idle, Loading, Success, Failed}

@@ -18,66 +18,52 @@ import {UserData} from '../types/user-data';
 import {CommentData} from '../types/comment-data';
 import {OfferPreview} from '../types/offer-preview';
 
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'data/fetchOffers',
-  async (_arg, {dispatch, extra: api}) => {
-    dispatch(setOffersDataLoadingStatus(true));
-    const {data} = await api.get<Offer[]>(APIRoute.Offers);
-    dispatch(setOffersDataLoadingStatus(false));
-    dispatch(loadOffers(data));
-  },
-);
+// export const fetchOfferCommentsAction = createAsyncThunk<void, Comment, {
+//   dispatch: AppDispatch;
+//   state: State;
+//   extra: AxiosInstance;
+// }>(
+//   'data/fetchOfferComments',
+//   async ({id}, {dispatch, extra: api}) => {
+//     try {
+//       const {data} = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
+//       dispatch(loadOfferComments(data));
+//     } catch (e) {
+//       dispatch(redirectToRoute(AppRoute.Root));
+//     }
+//   },
+// );
 
-export const fetchOfferCommentsAction = createAsyncThunk<void, Comment, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'data/fetchOfferComments',
-  async ({id}, {dispatch, extra: api}) => {
-    try {
-      const {data} = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
-      dispatch(loadOfferComments(data));
-    } catch (e) {
-      dispatch(redirectToRoute(AppRoute.Root));
-    }
-  },
-);
+// export const submitOfferCommentAction = createAsyncThunk<void, CommentData, {
+//   dispatch: AppDispatch;
+//   state: State;
+//   extra: AxiosInstance;
+// }>(
+//   'data/submitOfferComment',
+//   async ({id, comment, rating}, {dispatch, getState, extra: api}) => {
+//     try {
+//       const state = getState();
+//       const {data} = await api.post<Comment>(`${APIRoute.Comments}/${id}`, {comment, rating});
+//       dispatch(loadOfferComments([...state.comments, data]));
+//     } catch (e) {
+//       dispatch(redirectToRoute(AppRoute.Root));
+//     }
+//   },
+// );
 
-export const submitOfferCommentAction = createAsyncThunk<void, CommentData, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'data/submitOfferComment',
-  async ({id, comment, rating}, {dispatch, getState, extra: api}) => {
-    try {
-      const state = getState();
-      const {data} = await api.post<Comment>(`${APIRoute.Comments}/${id}`, {comment, rating});
-      dispatch(loadOfferComments([...state.comments, data]));
-    } catch (e) {
-      dispatch(redirectToRoute(AppRoute.Root));
-    }
-  },
-);
-
-export const fetchOfferNearByAction = createAsyncThunk<void, OfferPreview, {
-  dispatch: AppDispatch;
-  state: State;
-  extra: AxiosInstance;
-}>(
-  'data/fetchOfferNearBy',
-  async ({id}, {dispatch, extra: api}) => {
-    // dispatch(setOffersDataLoadingStatus(true));
-    const {data} = await api.get<OfferPreview[]>(`${APIRoute.Offers}/${id}${APIRoute.NearBy}`);
-    // dispatch(setOffersDataLoadingStatus(false));
-    dispatch(loadOfferNearBy(data));
-  },
-);
+// export const fetchOfferNearByAction = createAsyncThunk<void, OfferPreview, {
+//   dispatch: AppDispatch;
+//   state: State;
+//   extra: AxiosInstance;
+// }>(
+//   'data/fetchOfferNearBy',
+//   async ({id}, {dispatch, extra: api}) => {
+//     // dispatch(setOffersDataLoadingStatus(true));
+//     const {data} = await api.get<OfferPreview[]>(`${APIRoute.Offers}/${id}${APIRoute.NearBy}`);
+//     // dispatch(setOffersDataLoadingStatus(false));
+//     dispatch(loadOfferNearBy(data));
+//   },
+// );
 
 export const fetchOfferDataAction = createAsyncThunk<void, {id: string}, {
   dispatch: AppDispatch;

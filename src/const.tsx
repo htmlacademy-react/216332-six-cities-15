@@ -23,6 +23,8 @@ export enum CitiesType {
   Dusseldorf = 'Dusseldorf',
 }
 
+export const LOCATIONS = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
+
 export enum CardType {
   Favorites = 'favorites',
   NearPlaces = 'near-places',

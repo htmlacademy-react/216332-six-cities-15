@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, RequestsStatus} from '../../const';
-import {fetchCommentsAction, submitCommentAction} from '../thunks/comments';
-import {CommentsData} from '../../types/state';
+import {NameSpace, RequestsStatus} from '../../../const';
+import {fetchCommentsAction, submitCommentAction} from '../../thunks/comments';
+import {CommentsData} from '../../../types/state';
 
 const initialState: CommentsData = {
   comments: [],

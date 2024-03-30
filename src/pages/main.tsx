@@ -6,33 +6,35 @@ import Tabs from '../components/tabs';
 import Loader from '../components/loader';
 import PlacesSorting from '../components/places-sorting';
 
-import {SORT_OPTIONS, CardType, AuthorizationStatus, CitiesType} from '../const';
+import {SORT_OPTIONS, CardType, CitiesType} from '../const';
 import {City} from '../types/city';
 import {useAppDispatch, useAppSelector} from '../hooks';
-import {setCity, selectOffer, resetOffer} from '../store/action';
+import {setCity} from '../store/slices/cities/cities';
+import {setActiveId} from '../store/slices/offers/offers';
 import {sortOffers} from '../helpers/sortOffers';
 import {Offer} from '../types/offer';
+import {getActiveOffer, getOffers, getOffersDataLoadingStatus} from '../store/slices/offers/selectors';
+import {getActiveCity, getCities} from '../store/slices/cities/selectors';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(SORT_OPTIONS.popular);
-  const cities = useAppSelector((state) => state.cities);
-  const offers = useAppSelector((state) => state.offers);
-  const currentOffer = useAppSelector((state) => state.currentOffer);
-  const selectedCity: CitiesType = useAppSelector((state) => state.selectedCity);
-  const authorizationStatus: AuthorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isOffersDataLoading: boolean = useAppSelector((state) => state.isOffersDataLoading);
+  const offers = useAppSelector(getOffers);
+  const cities = useAppSelector(getCities);
+  const currentOffer = useAppSelector(getActiveOffer);
+  const selectedCity = useAppSelector(getActiveCity);
+  const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
   const dispatch = useAppDispatch();
 
   const onMouseEnterHandler = (id: string) => {
-    dispatch(selectOffer({id}));
+    dispatch(setActiveId(id));
   };
 
   const onMouseLeaveHandler = () => {
-    dispatch(resetOffer());
+    dispatch(setActiveId(null));
   };
 
   const selectedCityHandler = (city : CitiesType) => {
-    dispatch(setCity({selectedCity: city}));
+    dispatch(setCity(city));
   };
 
   const onChangeSortHandler = (data: string): void => {
@@ -57,13 +59,15 @@ export default function Main() {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity.name}</b>
+            <b className="places__found">
+              {filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity.name}
+            </b>
             <PlacesSorting
               active={activeSort}
               onChangeSort={onChangeSortHandler}
             />
             {
-              (authorizationStatus === AuthorizationStatus.Unknown || isOffersDataLoading) ?
+              isOffersDataLoading ?
                 <Loader /> :
                 <PlacesList
                   offers={sortedOffers}

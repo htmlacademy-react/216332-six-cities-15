@@ -1,18 +1,24 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, RequestsStatus} from '../../const';
-import {OffersData} from '../../types/state';
-import {fetchOffersAction} from '../thunks/offers';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {NameSpace, RequestsStatus} from '../../../const';
+import {OffersData} from '../../../types/state';
+import {fetchOffersAction} from '../../thunks/offers';
+import {citiesData} from "../cities/cities";
 
 const initialState: OffersData = {
   offers: [],
+  activeId: null,
   status: RequestsStatus.Idle,
   hasError: false,
 };
 
-export const offersData = createSlice({
+const offersData = createSlice({
   name: NameSpace.Offers,
   initialState,
-  reducers: {},
+  reducers: {
+    setActiveId (state: OffersData, action: PayloadAction<string | null>) {
+      state.activeId = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchOffersAction.pending, (state) => {
@@ -27,10 +33,8 @@ export const offersData = createSlice({
         state.status = RequestsStatus.Failed;
         state.hasError = true;
       });
-  },
-  selectors: {
-    offers: (state: OffersData) => state.offers,
-    offersStatus: (state: OffersData) => state.status,
-    offersErrors: (state: OffersData) => state.offers,
   }
 });
+
+export const { setActiveId } = offersData.actions;
+export {offersData};

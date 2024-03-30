@@ -8,6 +8,7 @@ export type UserProcess = {
 };
 
 export type OffersData = {
+  activeId: string | null;
   offers: Offer[];
   status: RequestsStatus;
   hasError: boolean;
@@ -25,6 +26,6 @@ export type CommentsData = {
   hasError: boolean;
 };
 
-export type State = ReturnType <typeof store.getState>;
+export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;

@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, RequestsStatus} from '../../const';
-import {fetchOfferAction} from '../thunks/offer';
-import {OfferData} from '../../types/state';
+import {NameSpace, RequestsStatus} from '../../../const';
+import {fetchOfferAction} from '../../thunks/offer';
+import {OfferData} from '../../../types/state';
 
 const initialState: OfferData = {
   info: null,
@@ -27,10 +27,5 @@ export const offerData = createSlice({
         state.status = RequestsStatus.Failed;
         state.hasError = true;
       });
-  },
-  selectors: {
-    info: (state: OfferData) => state.info,
-    offerStatus: (state: OfferData) => state.status,
-    offerErrors: (state: OfferData) => state.hasError,
   }
 });

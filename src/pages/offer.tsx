@@ -32,7 +32,6 @@ export default function OfferPage() {
   const currentOffer = useAppSelector(getOffer);
   const comments = useAppSelector(getComments);
   const nearBy = useAppSelector(getOffersNearBy);
-  console.log('aut', authorizationStatus);
 
   useEffect(() => {
     Promise.all([
@@ -40,7 +39,7 @@ export default function OfferPage() {
       dispatch(fetchCommentsAction(offerId as string)),
       dispatch(fetchOfferAction(offerId as string))
     ]);
-  }, [offerId]);
+  }, [offerId, dispatch]);
 
   if (offerStatus === RequestsStatus.Loading) {
     return (

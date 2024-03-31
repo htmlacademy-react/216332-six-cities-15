@@ -61,7 +61,7 @@ export default function Main() {
             <h2 className="visually-hidden">Places</h2>
 
             <b className="places__found">
-              {filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity.name}
+              {filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity?.name}
             </b>
 
             <PlacesSorting

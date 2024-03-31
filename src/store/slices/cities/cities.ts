@@ -17,7 +17,7 @@ const citiesData = createSlice({
   name: NameSpace.City,
   initialState,
   reducers: {
-    setCity (state: CityData, action: PayloadAction<string>) {
+    setCity (state: CityData, action: PayloadAction<CitiesType>) {
       state.activeCity = action.payload;
     },
   },

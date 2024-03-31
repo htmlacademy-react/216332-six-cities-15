@@ -5,7 +5,7 @@ import useMap from '../hooks/use-map';
 import {Offer} from '../types/offer';
 import {City} from '../types/city';
 import 'leaflet/dist/leaflet.css';
-import {OfferPreview} from "../types/offer-preview";
+import {OfferPreview} from '../types/offer-preview';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -28,6 +28,7 @@ type MapProps = {
 
 export default function Map(props: MapProps) {
   const {city, offers, selectedOffer, extraClass} = props;
+  console.log('map_props', city);
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);

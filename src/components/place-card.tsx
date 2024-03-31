@@ -8,7 +8,7 @@ import classNames from 'classnames';
 type PlaceCardProps = {
   offer: OfferPreview;
   variant: CardType;
-  onMouseEnter: (id?: string) => void;
+  onMouseEnter: (id: string) => void;
   onMouseLeave: () => void;
 }
 
@@ -21,8 +21,8 @@ export default function PlaceCard(
   {
     offer,
     variant,
-    onMouseEnter = () => {},
-    onMouseLeave = () => {}
+    onMouseEnter,
+    onMouseLeave,
   }: PlaceCardProps) {
 
   const {

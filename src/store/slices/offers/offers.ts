@@ -2,7 +2,6 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace, RequestsStatus} from '../../../const';
 import {OffersData} from '../../../types/state';
 import {fetchOffersAction} from '../../thunks/offers';
-import {citiesData} from "../cities/cities";
 
 const initialState: OffersData = {
   offers: [],

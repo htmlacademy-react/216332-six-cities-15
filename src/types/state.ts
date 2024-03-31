@@ -2,6 +2,7 @@ import {store} from '../store';
 import {AuthorizationStatus, RequestsStatus} from '../const';
 import {Offer} from './offer';
 import {OfferPreview} from './offer-preview';
+import {Comment} from './comment';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
@@ -20,6 +21,13 @@ export type UserInfo = {
 export type OffersData = {
   activeId?: string | null;
   offers: Offer[];
+  status: RequestsStatus;
+  hasError: boolean;
+};
+
+export type NearOffersData = {
+  activeId?: string | null;
+  offers: OfferPreview[];
   status: RequestsStatus;
   hasError: boolean;
 };

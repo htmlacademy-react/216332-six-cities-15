@@ -6,7 +6,7 @@ type PlacesListProps = {
   offers: OfferPreview[];
   extraClass?: string;
   variant: CardType;
-  onMouseEnter: (id?: string) => void;
+  onMouseEnter: (id: string) => void;
   onMouseLeave: () => void;
 }
 

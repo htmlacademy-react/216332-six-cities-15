@@ -34,7 +34,7 @@ const SignInItem = () => {
         <span className="header__favorite-count">3</span>
       </a>
     </li>
-  )
+  );
 };
 
 const SignOutItem = ({handleLogin}: SignOutItemProps) => (

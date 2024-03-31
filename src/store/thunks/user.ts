@@ -1,12 +1,10 @@
-import {AxiosInstance} from 'axios';
-import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute} from '../../const';
 import {UserData} from '../../types/user-data';
 import {dropToken, saveToken} from '../../services/token';
 import {AuthData} from '../../types/auth-data';
-import {AppDispatch} from '../../types/state';
+import {createAppAsyncThunk} from '../../hooks';
 
-export const checkAuthAction = createAsyncThunk<undefined, void, {extra: AxiosInstance}>
+export const checkAuthAction = createAppAsyncThunk<UserData, undefined>
 (
   'user/checkAuth',
   async (_args, {extra: api}) => {
@@ -15,7 +13,7 @@ export const checkAuthAction = createAsyncThunk<undefined, void, {extra: AxiosIn
   },
 );
 
-export const loginAction = createAsyncThunk<UserData, AuthData, {dispatch: AppDispatch; extra: AxiosInstance}>
+export const loginAction = createAppAsyncThunk<UserData, AuthData>
 (
   'user/login',
   async ({login: email, password}, {extra: api}) => {
@@ -25,7 +23,7 @@ export const loginAction = createAsyncThunk<UserData, AuthData, {dispatch: AppDi
   },
 );
 
-export const logoutAction = createAsyncThunk<undefined, void, {extra: AxiosInstance}>
+export const logoutAction = createAppAsyncThunk<void, undefined>
 (
   'user/logout',
   async (_args, {extra: api}) => {

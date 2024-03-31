@@ -7,22 +7,26 @@ import Loader from '../components/loader';
 import PlacesSorting from '../components/places-sorting';
 
 import {SORT_OPTIONS, CardType, CitiesType} from '../const';
-import {City} from '../types/city';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity} from '../store/slices/cities/cities';
 import {setActiveId} from '../store/slices/offers/offers';
 import {sortOffers} from '../helpers/sortOffers';
-import {Offer} from '../types/offer';
-import {getActiveOffer, getOffers, getOffersDataLoadingStatus} from '../store/slices/offers/selectors';
-import {getActiveCity, getCities} from '../store/slices/cities/selectors';
+import {
+  getActiveOffer,
+  getFilteredOffers,
+  getOffersDataLoadingStatus
+} from '../store/slices/offers/selectors';
+import {getCities, getCurrentCity} from '../store/slices/cities/selectors';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(SORT_OPTIONS.popular);
-  const offers = useAppSelector(getOffers);
+
   const cities = useAppSelector(getCities);
   const currentOffer = useAppSelector(getActiveOffer);
-  const selectedCity = useAppSelector(getActiveCity);
+  const currentCity = useAppSelector(getCurrentCity);
+  const filteredOffers = useAppSelector(getFilteredOffers);
   const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
+
   const dispatch = useAppDispatch();
 
   const onMouseEnterHandler = (id: string) => {
@@ -41,10 +45,6 @@ export default function Main() {
     setActiveSort(data);
   };
 
-  const currentCity: City = cities.find((city) => city.name === selectedCity);
-
-  const filteredOffers = offers.filter((offer: Offer) => offer.city.name === selectedCity);
-
   const sortedOffers = sortOffers(filteredOffers, activeSort);
 
   return (
@@ -59,13 +59,16 @@ export default function Main() {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
+
             <b className="places__found">
               {filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity.name}
             </b>
+
             <PlacesSorting
               active={activeSort}
               onChangeSort={onChangeSortHandler}
             />
+
             {
               isOffersDataLoading ?
                 <Loader /> :
@@ -77,6 +80,7 @@ export default function Main() {
                   onMouseLeave={onMouseLeaveHandler}
                 />
             }
+
           </section>
           <div className="cities__right-section">
             <Map

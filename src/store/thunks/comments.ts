@@ -3,10 +3,10 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute} from '../../const';
 import {CommentData} from '../../types/comment-data';
 
-export const fetchCommentsAction = createAsyncThunk<Comment[], {id: string}, {extra: AxiosInstance}>
+export const fetchCommentsAction = createAsyncThunk<Comment[], string, {extra: AxiosInstance}>
 (
   'data/fetchOfferComments',
-  async ({id}, {extra: api}) => {
+  async (id, {extra: api}) => {
     const {data} = await api.get<Comment[]>(`${APIRoute.Comments}/${id}`);
     return data;
   },

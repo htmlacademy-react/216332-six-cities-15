@@ -1,7 +1,7 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
 import {useAppDispatch} from '../hooks';
 import {RATING_OPTIONS} from '../const';
-import {submitOfferCommentAction} from '../store/api-actions';
+import {submitCommentAction} from '../store/thunks/comments';
 import RatingOption from './rating-option';
 import {MIN_CHARACTERS, MIN_RATING} from '../const';
 
@@ -25,7 +25,7 @@ export default function OfferForm({id}: OfferFormProps) {
   const handleSubmit = (e: FormEvent): void => {
     e.preventDefault();
     const {rating, review} = formData;
-    dispatch(submitOfferCommentAction(
+    dispatch(submitCommentAction(
       {
         id,
         rating: parseInt(rating, 10),

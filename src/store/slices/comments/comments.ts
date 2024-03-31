@@ -39,10 +39,5 @@ export const commentsData = createSlice({
         state.status = RequestsStatus.Failed;
         state.hasError = true;
       });
-  },
-  selectors: {
-    comments: (state: CommentsData) => state.comments,
-    commentsStatus: (state: CommentsData) => state.status,
-    commentsErrors: (state: CommentsData) => state.hasError,
   }
 });

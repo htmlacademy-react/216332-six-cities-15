@@ -2,9 +2,10 @@ import Container from '../components/container';
 import Footer from '../components/footer';
 import FavoriteLocation from '../components/favorite-location';
 import {useAppSelector} from '../hooks';
+import {getOffers} from '../store/slices/offers/selectors';
 
 export default function Favorites() {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector(getOffers);
   return (
     <Container classMain="page__main--favorites">
       <div className="page__favorites-container container">

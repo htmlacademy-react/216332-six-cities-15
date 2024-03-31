@@ -1,7 +1,7 @@
 import Container from '../components/container';
 import {useRef, FormEvent} from 'react';
 import {useAppDispatch} from '../hooks';
-import {loginAction} from '../store/api-actions';
+import {loginAction} from '../store/thunks/user';
 
 export default function Login() {
   const loginRef = useRef<HTMLInputElement | null>(null);

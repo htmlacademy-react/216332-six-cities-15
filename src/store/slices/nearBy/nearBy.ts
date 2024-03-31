@@ -27,10 +27,5 @@ export const nearByData = createSlice({
         state.status = RequestsStatus.Failed;
         state.hasError = true;
       });
-  },
-  selectors: {
-    offers: (state: OffersData) => state.offers,
-    offerStatus: (state: OffersData) => state.status,
-    offerErrors: (state: OffersData) => state.hasError,
   }
 });

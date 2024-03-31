@@ -1,10 +1,11 @@
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../hooks';
-import {logoutAction} from '../store/api-actions';
+import {logoutAction} from '../store/thunks/user';
 import {MouseEvent} from 'react';
 import {useAppSelector} from '../hooks';
 import {AppRoute, AuthorizationStatus} from '../const';
+import {getAuthorizationStatus, getUserInfo} from '../store/slices/user/selectors';
 
 type LogOutLinkProps = {
   handleLogout: (e: MouseEvent<HTMLAnchorElement>) => void;
@@ -22,16 +23,19 @@ const LogOutLink = ({handleLogout}: LogOutLinkProps) => (
   </li>
 );
 
-const SignInItem = () => (
-  <li className="header__nav-item user">
-    <a className="header__nav-link header__nav-link--profile" href="#">
-      <div className="header__avatar-wrapper user__avatar-wrapper">
-      </div>
-      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-      <span className="header__favorite-count">3</span>
-    </a>
-  </li>
-);
+const SignInItem = () => {
+  const userInfo = useAppSelector(getUserInfo);
+  return (
+    <li className="header__nav-item user">
+      <a className="header__nav-link header__nav-link--profile" href="#">
+        <div className="header__avatar-wrapper user__avatar-wrapper">
+        </div>
+        <span className="header__user-name user__name">{userInfo?.email}</span>
+        <span className="header__favorite-count">3</span>
+      </a>
+    </li>
+  )
+};
 
 const SignOutItem = ({handleLogin}: SignOutItemProps) => (
   <li className="header__nav-item user">
@@ -45,7 +49,7 @@ const SignOutItem = ({handleLogin}: SignOutItemProps) => (
 
 export default function Header() {
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const navigate = useNavigate();
 
   const handleLogout = (e: MouseEvent<HTMLAnchorElement>) => {

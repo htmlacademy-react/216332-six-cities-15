@@ -5,10 +5,20 @@ import {OfferPreview} from './offer-preview';
 
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
+  user: UserInfo | null;
+  status: RequestsStatus;
 };
 
+export type UserInfo = {
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+  email: string;
+  token: string;
+}
+
 export type OffersData = {
-  activeId: string | null;
+  activeId?: string | null;
   offers: Offer[];
   status: RequestsStatus;
   hasError: boolean;

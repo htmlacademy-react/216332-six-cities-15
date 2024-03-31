@@ -19,7 +19,7 @@ export type UserInfo = {
 }
 
 export type OffersData = {
-  activeId?: string | null;
+  activeId: string | null;
   offers: Offer[];
   status: RequestsStatus;
   hasError: boolean;
@@ -33,7 +33,7 @@ export type NearOffersData = {
 };
 
 export type OfferData = {
-  info: OfferPreview | null;
+  info: Offer | null;
   status: RequestsStatus;
   hasError: boolean;
 };

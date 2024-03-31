@@ -1,23 +1,23 @@
 import {APIRoute} from '../../const';
-import {UserData} from '../../types/user-data';
+import {UserInfo} from '../../types/state';
 import {dropToken, saveToken} from '../../services/token';
 import {AuthData} from '../../types/auth-data';
 import {createAppAsyncThunk} from '../../hooks';
 
-export const checkAuthAction = createAppAsyncThunk<UserData, undefined>
+export const checkAuthAction = createAppAsyncThunk<UserInfo, undefined>
 (
   'user/checkAuth',
   async (_args, {extra: api}) => {
-    const {data} = await api.get<UserData>(APIRoute.Login);
+    const {data} = await api.get<UserInfo>(APIRoute.Login);
     return data;
   },
 );
 
-export const loginAction = createAppAsyncThunk<UserData, AuthData>
+export const loginAction = createAppAsyncThunk<UserInfo, AuthData>
 (
   'user/login',
   async ({login: email, password}, {extra: api}) => {
-    const {data} = await api.post<UserData>(APIRoute.Login, {email, password});
+    const {data} = await api.post<UserInfo>(APIRoute.Login, {email, password});
     saveToken(data.token);
     return data;
   },

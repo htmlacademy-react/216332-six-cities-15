@@ -11,10 +11,10 @@ export const getFilteredOffers = (state: State): Offer[] =>
     offer.city.name === getActiveCity(state)
   );
 
-export const getActiveOffer = (state: State): Offer | null =>
+export const getActiveOffer = (state: State): Offer | null | undefined =>
   getActiveOfferId(state) !== null
     ? state[NameSpace.Offers].offers.find((offer) => offer.id === getActiveOfferId(state))
-    : getActiveOfferId(state) ;
+    : null ;
 
 export const getOffersDataLoadingStatus = (state: State): boolean => state[NameSpace.Offers].status !== RequestsStatus.Success;
 export const getErrorStatus = (state: State): boolean => state[NameSpace.Offers].hasError;

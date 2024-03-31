@@ -1,9 +1,9 @@
 import PlaceCard from './place-card';
 import {CardType} from '../const';
-import {OfferPreview} from '../types/offer-preview';
+import {Offer} from '../types/offer';
 
 type PlacesListProps = {
-  offers: OfferPreview[];
+  offers: Offer[];
   extraClass?: string;
   variant: CardType;
   onMouseEnter: (id: string) => void;

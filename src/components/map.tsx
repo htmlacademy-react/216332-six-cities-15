@@ -28,7 +28,6 @@ type MapProps = {
 
 export default function Map(props: MapProps) {
   const {city, offers, selectedOffer, extraClass} = props;
-  console.log('map_props', city);
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);

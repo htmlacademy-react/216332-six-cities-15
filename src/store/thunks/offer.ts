@@ -1,13 +1,13 @@
 import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute} from '../../const';
-import {OfferPreview} from '../../types/offer-preview';
+import {Offer} from '../../types/offer';
 
-export const fetchOfferAction = createAsyncThunk<OfferPreview, string, {extra: AxiosInstance}>
+export const fetchOfferAction = createAsyncThunk<Offer, string, {extra: AxiosInstance}>
 (
   'data/fetchOffer',
   async (id, {extra: api}) => {
-    const {data} = await api.get<OfferPreview>(`${APIRoute.Offers}/${id}`);
+    const {data} = await api.get<Offer>(`${APIRoute.Offers}/${id}`);
     return data;
   },
 );

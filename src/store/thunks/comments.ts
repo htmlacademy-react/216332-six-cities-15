@@ -2,6 +2,7 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {APIRoute} from '../../const';
 import {CommentData} from '../../types/comment-data';
+import {Comment} from '../../types/comment';
 
 export const fetchCommentsAction = createAsyncThunk<Comment[], string, {extra: AxiosInstance}>
 (

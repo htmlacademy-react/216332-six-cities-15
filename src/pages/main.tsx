@@ -12,11 +12,13 @@ import {setCity} from '../store/slices/cities/cities';
 import {setActiveId} from '../store/slices/offers/offers';
 import {sortOffers} from '../helpers/sortOffers';
 import {
-  getActiveOffer,
+  getActiveOffer, getErrorStatus,
   getFilteredOffers,
   getOffersDataLoadingStatus
 } from '../store/slices/offers/selectors';
 import {getCities, getCurrentCity} from '../store/slices/cities/selectors';
+import classNames from 'classnames';
+import EmptyOffers from '../components/empty-offers';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(SORT_OPTIONS.popular);
@@ -26,7 +28,7 @@ export default function Main() {
   const currentCity = useAppSelector(getCurrentCity);
   const filteredOffers = useAppSelector(getFilteredOffers);
   const isOffersDataLoading = useAppSelector(getOffersDataLoadingStatus);
-
+  const hasErrors = useAppSelector(getErrorStatus);
   const dispatch = useAppDispatch();
 
   const onMouseEnterHandler = (id: string) => {
@@ -48,7 +50,14 @@ export default function Main() {
   const sortedOffers = sortOffers(filteredOffers, activeSort);
 
   return (
-    <Container extraClass="page--gray page--main" classMain="page__main--index">
+
+    <Container
+      extraClass={classNames({
+        'page--gray': !hasErrors,
+        'page__main--index-empty': hasErrors || (sortedOffers.length === 0 && !isOffersDataLoading),
+      })}
+      classMain=" page--main page__main--index"
+    >
       <h1 className="visually-hidden">Cities</h1>
       <Tabs
         onSelectedCity={selectedCityHandler}
@@ -56,39 +65,53 @@ export default function Main() {
         cities={cities}
       />
       <div className="cities">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
+        <div
+          className={classNames({
+            'cities__places-container container': true,
+            'cities__places-container--empty': hasErrors || (sortedOffers.length === 0 && !isOffersDataLoading)
+          })}
+        >
+          {
+            (hasErrors || (sortedOffers.length === 0 && !isOffersDataLoading)) ?
+              <EmptyOffers city={currentCity.name} /> :
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
 
-            <b className="places__found">
-              {filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity?.name}
-            </b>
+                <b className="places__found">
+                  {filteredOffers.length} {filteredOffers.length <= 1 ? 'place' : 'places'} to stay in {currentCity?.name}
+                </b>
 
-            <PlacesSorting
-              active={activeSort}
-              onChangeSort={onChangeSortHandler}
-            />
-
-            {
-              isOffersDataLoading ?
-                <Loader /> :
-                <PlacesList
-                  offers={sortedOffers}
-                  variant={CardType.Cities}
-                  extraClass="cities__places-list tabs__content"
-                  onMouseEnter={onMouseEnterHandler}
-                  onMouseLeave={onMouseLeaveHandler}
+                <PlacesSorting
+                  active={activeSort}
+                  onChangeSort={onChangeSortHandler}
                 />
-            }
 
-          </section>
+                {
+                  isOffersDataLoading ?
+                    <Loader /> :
+                    <PlacesList
+                      offers={sortedOffers}
+                      variant={CardType.Cities}
+                      extraClass="cities__places-list tabs__content"
+                      onMouseEnter={onMouseEnterHandler}
+                      onMouseLeave={onMouseLeaveHandler}
+                    />
+                }
+
+              </section>
+          }
           <div className="cities__right-section">
-            <Map
-              city={currentCity}
-              offers={filteredOffers}
-              selectedOffer={currentOffer}
-              extraClass="cities__map"
-            />
+            {
+              (
+                !hasErrors && (sortedOffers.length > 0 && !isOffersDataLoading)
+              ) &&
+              <Map
+                city={currentCity}
+                offers={filteredOffers}
+                selectedOffer={currentOffer}
+                extraClass="cities__map"
+              />
+            }
           </div>
         </div>
       </div>

@@ -11,22 +11,3 @@ export const fetchOffersAction = createAsyncThunk<Offer[], void, {extra: AxiosIn
     return data;
   },
 );
-
-export const toggleFavoriteStatusAction = createAsyncThunk<{id}, void>
-(
-  'data/toggleFavoriteOffer',
-  async ({id}, {getState}) => {
-    let offer: Offer | null = null;
-    const state = getState().OFFERS;
-    const index = state.offers.findIndex((offer): Offer => offer.id === id);
-    if (index !== -1) {
-      offer = {...state.offers[index]};
-      offer.isFavorite = !offer.isFavorite;
-    }
-    const promise = new Promise((resolve) => {
-      setTimeout(() => resolve({offer, index}), 10);
-    });
-
-    return await promise;
-  },
-);

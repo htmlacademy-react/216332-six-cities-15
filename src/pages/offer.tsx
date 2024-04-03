@@ -41,8 +41,26 @@ export default function OfferPage() {
   const nearBy = useAppSelector(getOffersNearBy);
   const isAuthStatus = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
 
+  useEffect(() => {
+    Promise.all([
+      dispatch(fetchNearByAction(offerId as string)),
+      dispatch(fetchCommentsAction(offerId as string)),
+      dispatch(fetchOfferAction(offerId as string))
+    ]);
+  }, [offerId, dispatch]);
+
+  if (offerStatus === RequestsStatus.Loading) {
+    return (
+      <Loader/>
+    );
+  }
+
   const onFavoriteClickHandler = (e: MouseEvent) => {
     e.preventDefault();
+
+    if (!currentOffer) {
+      return;
+    }
 
     if (!isAuthStatus) {
       return navigate(`${AppRoute.Login}`);
@@ -57,20 +75,6 @@ export default function OfferPage() {
         dispatch(updateOffer(id));
       });
   };
-
-  useEffect(() => {
-    Promise.all([
-      dispatch(fetchNearByAction(offerId as string)),
-      dispatch(fetchCommentsAction(offerId as string)),
-      dispatch(fetchOfferAction(offerId as string))
-    ]);
-  }, [offerId, dispatch]);
-
-  if (offerStatus === RequestsStatus.Loading) {
-    return (
-      <Loader/>
-    );
-  }
 
   if (offerStatus === RequestsStatus.Failed || !currentOffer) {
     return (

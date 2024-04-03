@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {NameSpace, RequestsStatus} from '../../../const';
 import {fetchOfferAction} from '../../thunks/offer';
 import {OfferData} from '../../../types/state';

@@ -12,7 +12,13 @@ const initialState: OfferData = {
 export const offerData = createSlice({
   name: NameSpace.Offer,
   initialState,
-  reducers: {},
+  reducers: {
+    updateOffer (state: OfferData, action: PayloadAction<string | null>) {
+      if (state?.info?.id === action.payload) {
+        state.info.isFavorite = !state.info.isFavorite;
+      }
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchOfferAction.pending, (state) => {
@@ -29,3 +35,5 @@ export const offerData = createSlice({
       });
   }
 });
+
+export const {updateOffer} = offerData.actions;

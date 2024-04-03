@@ -8,12 +8,16 @@ import PrivateRoute from './components/private-route';
 import {AppRoute} from './const';
 import {Route, Routes} from 'react-router-dom';
 import {useAppDispatch} from './hooks';
+import {useAppSelector} from './hooks';
 import {fetchOffersAction} from './store/thunks/offers';
+import {fetchFavoriteOffersAction} from './store/thunks/favorite';
 import {checkAuthAction} from './store/thunks/user';
 import {getToken} from './services/token';
+import {getAuthCheckedStatus} from './store/slices/user/selectors';
 
 export default function App() {
   const dispatch = useAppDispatch();
+  const authStatus = useAppSelector(getAuthCheckedStatus);
   const token = getToken();
 
   useEffect(() => {
@@ -22,6 +26,12 @@ export default function App() {
     }
     dispatch(fetchOffersAction());
   }, [token, dispatch]);
+
+  useEffect(() => {
+    if (token && authStatus) {
+      dispatch(fetchFavoriteOffersAction());
+    }
+  }, [token, dispatch, authStatus]);
 
   return (
     <Routes>

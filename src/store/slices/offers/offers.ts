@@ -17,6 +17,10 @@ const offersData = createSlice({
     setActiveId (state: OffersData, action: PayloadAction<string | null>) {
       state.activeId = action.payload;
     },
+    updateOffers (state: OffersData, action: PayloadAction<string | null>) {
+      const index = state.offers.findIndex((offer) => offer.id === action.payload);
+      if (index !== -1) state.offers[index].isFavorite = !state.offers[index].isFavorite;
+    }
   },
   extraReducers(builder) {
     builder
@@ -35,5 +39,5 @@ const offersData = createSlice({
   }
 });
 
-export const { setActiveId } = offersData.actions;
+export const {setActiveId, updateOffers} = offersData.actions;
 export {offersData};

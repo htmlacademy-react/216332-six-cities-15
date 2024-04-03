@@ -1,9 +1,11 @@
 import {useEffect} from 'react';
 
 import {useParams} from 'react-router-dom';
-import {AuthorizationStatus, CardType, RequestsStatus} from '../const';
+import {AppRoute, AuthorizationStatus, CardType, RequestsStatus} from '../const';
 import {useAppSelector} from '../hooks';
 import {useAppDispatch} from '../hooks';
+import {useNavigate} from 'react-router-dom';
+import classNames from 'classnames';
 
 import Container from '../components/container';
 import {calculateRating} from '../helpers/calculateRating';
@@ -22,16 +24,39 @@ import {fetchNearByAction} from '../store/thunks/nearBy';
 import {fetchCommentsAction} from '../store/thunks/comments';
 import {fetchOfferAction} from '../store/thunks/offer';
 import PageNotFound from './pageNotFound';
+import {changeFavoriteOfferAction} from '../store/thunks/favorite';
+import {updateOffers} from '../store/slices/offers/offers';
+import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
+import {updateOffer} from '../store/slices/offer/offer';
 
 export default function OfferPage() {
 
   const {offerId} = useParams();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const offerStatus = useAppSelector(getOfferStatus);
   const currentOffer = useAppSelector(getOffer);
   const comments = useAppSelector(getComments);
   const nearBy = useAppSelector(getOffersNearBy);
+  const isAuthStatus = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
+
+  const onFavoriteClickHandler = (e: MouseEvent) => {
+    e.preventDefault();
+
+    if (!isAuthStatus) {
+      return navigate(`${AppRoute.Login}`);
+    }
+
+    const {id, isFavorite} = currentOffer;
+
+    dispatch(changeFavoriteOfferAction({id, status: Number(!isFavorite)}))
+      .then(() => {
+        dispatch(updateOffers(id));
+        dispatch(updateNearByOffers(id));
+        dispatch(updateOffer(id));
+      });
+  };
 
   useEffect(() => {
     Promise.all([
@@ -79,7 +104,14 @@ export default function OfferPage() {
               <h1 className="offer__name">
                 {currentOffer?.title}
               </h1>
-              <button className="offer__bookmark-button button" type="button">
+              <button
+                type="button"
+                className={classNames({
+                  'offer__bookmark-button button': true,
+                  'offer__bookmark-button--active': currentOffer.isFavorite,
+                })}
+                onClick={onFavoriteClickHandler}
+              >
                 <svg className="offer__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>

@@ -20,7 +20,7 @@ export default function PlacesList(
   }: PlacesListProps) {
 
   return (
-    <div className={`places__list ${extraClass ? extraClass : ''}`}>
+    <div className={`places__list ${extraClass ? extraClass : ''}`} >
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}

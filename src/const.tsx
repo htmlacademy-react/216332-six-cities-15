@@ -91,3 +91,5 @@ export enum NameSpace {
 }
 
 export const enum RequestsStatus {Idle, Loading, Success, Failed}
+
+export const enum FavoriteStatus { Removed, Added }

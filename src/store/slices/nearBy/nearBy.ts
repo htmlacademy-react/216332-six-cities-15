@@ -12,7 +12,12 @@ const initialState: NearOffersData = {
 export const nearByData = createSlice({
   name: NameSpace.Near,
   initialState,
-  reducers: {},
+  reducers: {
+    updateNearByOffers (state: NearOffersData, action: PayloadAction<string | null>) {
+      const index = state.offers.findIndex((offer) => offer.id === action.payload);
+      if (index !== -1) state.offers[index].isFavorite = !state.offers[index].isFavorite;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchNearByAction.pending, (state) => {
@@ -29,3 +34,5 @@ export const nearByData = createSlice({
       });
   }
 });
+
+export const {updateNearByOffers} = nearByData.actions;

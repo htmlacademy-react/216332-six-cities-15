@@ -6,6 +6,7 @@ import {MouseEvent} from 'react';
 import {useAppSelector} from '../hooks';
 import {AppRoute, AuthorizationStatus} from '../const';
 import {getAuthorizationStatus, getUserInfo} from '../store/slices/user/selectors';
+import {getFavoriteOffers} from '../store/slices/favorite/selectors';
 
 type LogOutLinkProps = {
   handleLogout: (e: MouseEvent<HTMLAnchorElement>) => void;
@@ -25,13 +26,14 @@ const LogOutLink = ({handleLogout}: LogOutLinkProps) => (
 
 const SignInItem = () => {
   const userInfo = useAppSelector(getUserInfo);
+  const favoriteOffersCount = useAppSelector(getFavoriteOffers);
   return (
     <li className="header__nav-item user">
       <a className="header__nav-link header__nav-link--profile" href="#">
         <div className="header__avatar-wrapper user__avatar-wrapper">
         </div>
         <span className="header__user-name user__name">{userInfo?.email}</span>
-        <span className="header__favorite-count">3</span>
+        <span className="header__favorite-count">{favoriteOffersCount.length}</span>
       </a>
     </li>
   );

@@ -38,6 +38,10 @@ export type OfferData = {
   hasError: boolean;
 };
 
+export type FavoriteData = {
+  status: 0 | 1;
+}
+
 export type CommentsData = {
   comments: Comment[];
   status: RequestsStatus;

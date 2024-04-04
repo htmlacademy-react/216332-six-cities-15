@@ -5,7 +5,7 @@ import {cities} from '../../../mocks/cities';
 
 export type CityData = {
   cities: City[];
-  activeCity: CitiesType;
+  activeCity: string;
 };
 
 const initialState: CityData = {
@@ -17,7 +17,7 @@ const citiesData = createSlice({
   name: NameSpace.City,
   initialState,
   reducers: {
-    setCity (state: CityData, action: PayloadAction<CitiesType>) {
+    setCity (state: CityData, action: PayloadAction<string>) {
       state.activeCity = action.payload;
     },
   },

@@ -5,7 +5,7 @@ import {Offer} from '../../types/offer';
 import {FavoriteStatus} from '../../const';
 
 type FavoriteProps = {
-  offerId: string;
+  id: string;
   status: FavoriteStatus;
 };
 

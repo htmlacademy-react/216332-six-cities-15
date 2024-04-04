@@ -1,7 +1,6 @@
 import {store} from '../store';
 import {AuthorizationStatus, RequestsStatus} from '../const';
 import {Offer} from './offer';
-import {OfferPreview} from './offer-preview';
 import {Comment} from './comment';
 
 export type UserProcess = {
@@ -25,9 +24,14 @@ export type OffersData = {
   hasError: boolean;
 };
 
+export type FavoriteOffersData = {
+  offers: Offer[];
+  status: RequestsStatus;
+  hasError: boolean;
+};
+
 export type NearOffersData = {
-  activeId?: string | null;
-  offers: OfferPreview[];
+  offers: Offer[];
   status: RequestsStatus;
   hasError: boolean;
 };
@@ -37,10 +41,6 @@ export type OfferData = {
   status: RequestsStatus;
   hasError: boolean;
 };
-
-export type FavoriteData = {
-  status: 0 | 1;
-}
 
 export type CommentsData = {
   comments: Comment[];

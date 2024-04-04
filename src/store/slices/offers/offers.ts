@@ -17,7 +17,7 @@ const offersData = createSlice({
     setActiveId (state: OffersData, action: PayloadAction<string | null>) {
       state.activeId = action.payload;
     },
-    updateOffers (state: OffersData, action: PayloadAction<string | null>) {
+    updateOffers (state: OffersData, action: PayloadAction<string>) {
       const index = state.offers.findIndex((offer) => offer.id === action.payload);
       if (index !== -1) {
         state.offers[index].isFavorite = !state.offers[index].isFavorite;

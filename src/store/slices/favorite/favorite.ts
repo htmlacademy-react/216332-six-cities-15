@@ -1,9 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {FavoriteStatus, NameSpace, RequestsStatus} from '../../../const';
 import {fetchFavoriteOffersAction, changeFavoriteOfferAction} from '../../thunks/favorite';
-import {OffersData} from '../../../types/state';
+import {FavoriteOffersData} from '../../../types/state';
 
-const initialState: OffersData = {
+const initialState: FavoriteOffersData = {
   offers: [],
   status: RequestsStatus.Idle,
   hasError: false,

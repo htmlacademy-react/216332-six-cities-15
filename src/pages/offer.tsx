@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, MouseEvent} from 'react';
 
 import {useParams} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus, CardType, RequestsStatus} from '../const';
@@ -55,7 +55,7 @@ export default function OfferPage() {
     );
   }
 
-  const onFavoriteClickHandler = (e: MouseEvent) => {
+  const onFavoriteClickHandler = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (!currentOffer) {
@@ -181,12 +181,15 @@ export default function OfferPage() {
             </ReviewsList>
           </div>
         </div>
-        <Map
-          city={currentOffer.city}
-          offers={[...nearBy.slice(0, 3), currentOffer]}
-          selectedOffer={currentOffer}
-          extraClass="offer__map"
-        />
+        {
+          currentOffer &&
+            <Map
+              city={currentOffer.city}
+              offers={[...nearBy.slice(0, 3), currentOffer]}
+              selectedOffer={currentOffer}
+              extraClass="offer__map"
+            />
+        }
       </section>
       <div className="container">
         <section className="near-places places">

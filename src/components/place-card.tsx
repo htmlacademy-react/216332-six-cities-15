@@ -1,3 +1,4 @@
+import {MouseEvent} from 'react';
 import {OfferPreview} from '../types/offer-preview';
 import {calculateRating} from '../helpers/calculateRating';
 import {useNavigate} from 'react-router-dom';
@@ -15,8 +16,8 @@ import {updateOffer} from '../store/slices/offer/offer';
 type PlaceCardProps = {
   offer: OfferPreview;
   variant: CardType;
-  onMouseEnter: (id: string) => void;
-  onMouseLeave: () => void;
+  onMouseEnter?: (id: string) => void;
+  onMouseLeave?: () => void;
 }
 
 const NORMAL_WIDTH = 260;
@@ -47,7 +48,7 @@ export default function PlaceCard(
   const dispatch = useAppDispatch();
   const isAuthStatus = useAppSelector(getAuthorizationStatus) === AuthorizationStatus.Auth;
 
-  const onClickHandler = (e: MouseEvent) => {
+  const onClickHandler = (e: MouseEvent<HTMLHeadingElement> | MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     navigate(`${AppRoute.Offer}/${id}`);
     if (window) {
@@ -78,8 +79,8 @@ export default function PlaceCard(
         'favorites__card': CardType.Favorites === variant,
         'near-places__card': CardType.NearPlaces === variant,
       })}
-      onMouseEnter={() => onMouseEnter(id)}
-      onMouseLeave={() => onMouseLeave()}
+      onMouseEnter={onMouseEnter ? () => onMouseEnter(id) : () => {}}
+      onMouseLeave={onMouseLeave ? () => onMouseLeave() : () => {}}
     >
       {
         isPremium &&

@@ -6,8 +6,8 @@ type PlacesListProps = {
   offers: Offer[];
   extraClass?: string;
   variant: CardType;
-  onMouseEnter: (id: string) => void;
-  onMouseLeave: () => void;
+  onMouseEnter?: (id: string) => void;
+  onMouseLeave?: () => void;
 }
 
 export default function PlacesList(

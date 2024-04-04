@@ -1,7 +1,5 @@
-import {CitiesType} from '../const';
-
 type EmptyOffersProps = {
-  city: CitiesType;
+  city: string;
 }
 
 export default function EmptyOffers({city}: EmptyOffersProps) {

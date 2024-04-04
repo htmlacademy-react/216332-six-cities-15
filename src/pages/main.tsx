@@ -6,7 +6,7 @@ import Tabs from '../components/tabs';
 import Loader from '../components/loader';
 import PlacesSorting from '../components/places-sorting';
 
-import {SORT_OPTIONS, CardType, CitiesType} from '../const';
+import {SORT_OPTIONS, CardType} from '../const';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity} from '../store/slices/cities/cities';
 import {setActiveId} from '../store/slices/offers/offers';
@@ -19,6 +19,7 @@ import {
 import {getCities, getCurrentCity} from '../store/slices/cities/selectors';
 import classNames from 'classnames';
 import EmptyOffers from '../components/empty-offers';
+import {Offer} from '../types/offer';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(SORT_OPTIONS.popular);
@@ -39,7 +40,7 @@ export default function Main() {
     dispatch(setActiveId(null));
   };
 
-  const selectedCityHandler = (city : CitiesType) => {
+  const selectedCityHandler = (city : string) => {
     dispatch(setCity(city));
   };
 
@@ -47,7 +48,7 @@ export default function Main() {
     setActiveSort(data);
   };
 
-  const sortedOffers = sortOffers(filteredOffers, activeSort);
+  const sortedOffers: Offer[] = sortOffers(filteredOffers, activeSort);
 
   return (
 
@@ -59,11 +60,14 @@ export default function Main() {
       classMain=" page--main page__main--index"
     >
       <h1 className="visually-hidden">Cities</h1>
-      <Tabs
-        onSelectedCity={selectedCityHandler}
-        city={currentCity}
-        cities={cities}
-      />
+      {
+        currentCity &&
+          <Tabs
+            onSelectedCity={selectedCityHandler}
+            city={currentCity}
+            cities={cities}
+          />
+      }
       <div className="cities">
         <div
           className={classNames({
@@ -73,7 +77,7 @@ export default function Main() {
         >
           {
             (hasErrors || (sortedOffers.length === 0 && !isOffersDataLoading)) ?
-              <EmptyOffers city={currentCity.name} /> :
+              <EmptyOffers city={currentCity ? currentCity.name : ''} /> :
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
 
@@ -103,7 +107,10 @@ export default function Main() {
           <div className="cities__right-section">
             {
               (
-                !hasErrors && (sortedOffers.length > 0 && !isOffersDataLoading)
+                !hasErrors &&
+                (sortedOffers.length > 0 && !isOffersDataLoading) &&
+                currentCity &&
+                currentOffer
               ) &&
               <Map
                 city={currentCity}

@@ -1,12 +1,11 @@
 import {NavLink} from 'react-router-dom';
 import {City} from '../types/city';
 import classNames from 'classnames';
-import {CitiesType} from '../const';
 
 type TabsProps = {
   cities: City[];
-  city: City | undefined;
-  onSelectedCity: (name: CitiesType) => void;
+  city: City;
+  onSelectedCity: (name: string) => void;
 }
 
 export default function Tabs({cities, city, onSelectedCity}: TabsProps) {

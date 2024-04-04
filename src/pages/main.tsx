@@ -110,7 +110,7 @@ export default function Main() {
                 !hasErrors &&
                 (sortedOffers.length > 0 && !isOffersDataLoading) &&
                 currentCity &&
-                currentOffer
+                currentOffer !== undefined
               ) &&
               <Map
                 city={currentCity}

@@ -23,6 +23,7 @@ export enum CitiesType {
   Dusseldorf = 'Dusseldorf',
 }
 
+
 export enum CardType {
   Favorites = 'favorites',
   NearPlaces = 'near-places',
@@ -77,3 +78,18 @@ export const URL_MARKER_DEFAULT =
 
 export const URL_MARKER_CURRENT =
   '/img/pin-active.svg';
+
+
+export enum NameSpace {
+  Offers = 'OFFERS',
+  Near = 'NEAR',
+  Offer = 'OFFER',
+  Favorite = 'FAVORITE',
+  User = 'USER',
+  City = 'CITY',
+  Comments = 'COMMENTS',
+}
+
+export const enum RequestsStatus {Idle, Loading, Success, Failed}
+
+export const enum FavoriteStatus { Removed, Added }

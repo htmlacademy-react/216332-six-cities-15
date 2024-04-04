@@ -18,7 +18,7 @@ export const cities: City[] = [
     }
   },
   {
-    name: 'Brussels',
+    name: 'Brussel',
     location: {
       latitude: 50.846557,
       longitude: 4.351697,

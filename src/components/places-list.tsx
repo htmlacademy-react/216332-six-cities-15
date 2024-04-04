@@ -1,13 +1,13 @@
 import PlaceCard from './place-card';
 import {CardType} from '../const';
-import {OfferPreview} from '../types/offer-preview';
+import {Offer} from '../types/offer';
 
 type PlacesListProps = {
-  offers: OfferPreview[];
+  offers: Offer[];
   extraClass?: string;
   variant: CardType;
-  onMouseEnter: (id?: string) => void;
-  onMouseLeave: () => void;
+  onMouseEnter?: (id: string) => void;
+  onMouseLeave?: () => void;
 }
 
 export default function PlacesList(
@@ -20,7 +20,7 @@ export default function PlacesList(
   }: PlacesListProps) {
 
   return (
-    <div className={`places__list ${extraClass ? extraClass : ''}`}>
+    <div className={`places__list ${extraClass ? extraClass : ''}`} >
       {offers.map((offer) => (
         <PlaceCard
           key={offer.id}

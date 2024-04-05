@@ -5,6 +5,7 @@ import Map from '../components/map';
 import Tabs from '../components/tabs';
 import Loader from '../components/loader';
 import PlacesSorting from '../components/places-sorting';
+import HelmetComponent from '../components/helmet-component';
 
 import {SORT_OPTIONS, CardType} from '../const';
 import {useAppDispatch, useAppSelector} from '../hooks';
@@ -59,6 +60,7 @@ export default function Main() {
       })}
       classMain=" page--main page__main--index"
     >
+      <HelmetComponent title='6 cities' description='This page showcases various offers available on the platform.'/>
       <h1 className="visually-hidden">Cities</h1>
       {
         currentCity &&

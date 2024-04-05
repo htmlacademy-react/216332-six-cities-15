@@ -7,6 +7,7 @@ import {getCitiesNames} from '../store/slices/cities/selectors';
 import {getRandomCity} from '../helpers/getRandomCity';
 import {setCity} from '../store/slices/cities/cities';
 import {Link} from 'react-router-dom';
+import HelmetComponent from '../components/helmet-component';
 
 export default function Login() {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -33,6 +34,10 @@ export default function Login() {
 
   return (
     <Container extraClass="page--gray page--login" classMain="page__main--login">
+      <HelmetComponent
+        title='6 cities: authorization'
+        description='This page is the authentication gateway, allowing users to log in and access the features.'
+      />
       <div className="page__login-container container">
         <section className="login">
           <h1 className="login__title">Sign in</h1>

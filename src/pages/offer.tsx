@@ -14,6 +14,7 @@ import ReviewsList from '../components/reviews-list';
 import Map from '../components/map';
 import PlacesList from '../components/places-list';
 import Loader from '../components/loader';
+import HelmetComponent from '../components/helmet-component';
 
 import {getAuthorizationStatus} from '../store/slices/user/selectors';
 import {getOffer, getOfferStatus} from '../store/slices/offer/selectors';
@@ -84,6 +85,7 @@ export default function OfferPage() {
 
   return (
     <Container classMain="page__main--offer">
+      <HelmetComponent title='6 cities: offer' description='This page provides detailed information about the current offer: "6 cities: offer".'/>
       <section className="offer">
         <div className="offer__gallery-container container">
           <div className="offer__gallery">

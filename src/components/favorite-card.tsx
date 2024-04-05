@@ -1,5 +1,13 @@
+import {MouseEvent} from 'react';
 import {OfferPreview} from '../types/offer-preview';
 import {calculateRating} from '../helpers/calculateRating';
+import {useNavigate} from 'react-router-dom';
+import {useAppDispatch} from '../hooks';
+import {AppRoute} from '../const';
+import {changeFavoriteOfferAction} from '../store/thunks/favorite';
+import {updateOffers} from '../store/slices/offers/offers';
+import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
+import {updateOffer} from '../store/slices/offer/offer';
 
 type FavoriteCardProps = {
   offer: OfferPreview;
@@ -8,13 +16,37 @@ type FavoriteCardProps = {
 export default function FavoriteCard({offer}: FavoriteCardProps) {
 
   const {
+    id,
     title,
+    isFavorite,
     type,
     price,
     previewImage,
     isPremium,
     rating,
   } = offer;
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const onClickHandler = (e: MouseEvent<HTMLHeadingElement> | MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    navigate(`${AppRoute.Offer}/${id}`);
+    if (window) {
+      window.scrollTo({top: 0, left: 0});
+    }
+  };
+
+  const onFavoriteClickHandler = (e: MouseEvent) => {
+    e.preventDefault();
+
+    dispatch(changeFavoriteOfferAction({id, status: Number(!isFavorite)}))
+      .then(() => {
+        dispatch(updateOffers(id));
+        dispatch(updateNearByOffers(id));
+        dispatch(updateOffer(id));
+      });
+  };
 
   return (
     <article className="favorites__card place-card">
@@ -25,7 +57,7 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
         </div>
       }
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <a href="#" onClick={onClickHandler}>
           <img className="place-card__image" src={previewImage} width="150" height="110"
             alt="Place image"
           />
@@ -37,7 +69,9 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button"
+          <button
+            className="place-card__bookmark-button place-card__bookmark-button--active button"
+            onClick={onFavoriteClickHandler}
             type="button"
           >
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -52,7 +86,7 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
+        <h2 className="place-card__name" onClick={onClickHandler}>
           <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>

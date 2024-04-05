@@ -6,7 +6,7 @@ import EmptyFavoriteOffers from '../components/empty-favorite-offers';
 import HelmetComponent from '../components/helmet-component';
 import classNames from 'classnames';
 import {useMemo} from 'react';
-import {preparedFavoriteData} from '../helpers/preparedFavoriteData';
+import {preparedFavoriteData} from '../helpers/prepared-favorite-data';
 
 export default function Favorites() {
   const offers = useAppSelector(getFavoriteOffers);

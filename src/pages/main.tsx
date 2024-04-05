@@ -11,7 +11,7 @@ import {SORT_OPTIONS, CardType} from '../const';
 import {useAppDispatch, useAppSelector} from '../hooks';
 import {setCity} from '../store/slices/cities/cities';
 import {setActiveId} from '../store/slices/offers/offers';
-import {sortOffers} from '../helpers/sortOffers';
+import {sortOffers} from '../helpers/sort-offers';
 import {
   getActiveOffer, getErrorStatus,
   getFilteredOffers,

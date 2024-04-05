@@ -1,6 +1,6 @@
 import {MouseEvent} from 'react';
 import {OfferPreview} from '../types/offer-preview';
-import {calculateRating} from '../helpers/calculateRating';
+import {calculateRating} from '../helpers/calculate-rating';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch} from '../hooks';
 import {AppRoute} from '../const';

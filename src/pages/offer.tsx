@@ -8,13 +8,14 @@ import {useNavigate} from 'react-router-dom';
 import classNames from 'classnames';
 
 import Container from '../components/container';
-import {calculateRating} from '../helpers/calculateRating';
+import {calculateRating} from '../helpers/calculate-rating';
 import OfferForm from '../components/offer-form';
 import ReviewsList from '../components/reviews-list';
 import Map from '../components/map';
 import PlacesList from '../components/places-list';
 import Loader from '../components/loader';
 import HelmetComponent from '../components/helmet-component';
+import {MAX_COMMENTS, MAX_NEAR_OFFERS} from '../const';
 
 import {getAuthorizationStatus} from '../store/slices/user/selectors';
 import {getOffer, getOfferStatus} from '../store/slices/offer/selectors';
@@ -24,7 +25,7 @@ import {getOffersNearBy} from '../store/slices/nearBy/selectors';
 import {fetchNearByAction} from '../store/thunks/nearBy';
 import {fetchCommentsAction} from '../store/thunks/comments';
 import {fetchOfferAction} from '../store/thunks/offer';
-import PageNotFound from './pageNotFound';
+import PageNotFound from './page-not-found';
 import {changeFavoriteOfferAction} from '../store/thunks/favorite';
 import {updateOffers} from '../store/slices/offers/offers';
 import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
@@ -175,7 +176,7 @@ export default function OfferPage() {
                 </p>
               </div>
             </div>
-            <ReviewsList comments={comments}>
+            <ReviewsList comments={[...comments].reverse().slice(0, MAX_COMMENTS)}>
               {
                 authorizationStatus === AuthorizationStatus.Auth &&
                 <OfferForm id={offerId}/>
@@ -187,7 +188,7 @@ export default function OfferPage() {
           currentOffer &&
             <Map
               city={currentOffer.city}
-              offers={[...nearBy.slice(0, 3), currentOffer]}
+              offers={[...nearBy.slice(0, MAX_NEAR_OFFERS), currentOffer]}
               selectedOffer={currentOffer}
               extraClass="offer__map"
             />

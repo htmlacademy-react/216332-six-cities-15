@@ -1,5 +1,5 @@
 import {RatingOption} from './types/rating-option';
-import {City} from './types/city';
+import {City as CityType} from './types/city';
 
 export enum AppRoute {
   Root = '/',
@@ -95,7 +95,7 @@ export const enum RequestsStatus {Idle, Loading, Success, Failed}
 
 export const enum FavoriteStatus { Removed, Added }
 
-export const CITIES: City[] = [
+export const CITIES: CityType[] = [
   {
     name: 'Paris',
     location: {
@@ -145,4 +145,8 @@ export const CITIES: City[] = [
     }
   }
 ];
+
+export const MAX_COMMENTS = 10;
+export const MAX_NEAR_OFFERS = 3;
+export const MAX_CHARACTERS = 300;
 

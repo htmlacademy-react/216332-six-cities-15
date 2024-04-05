@@ -1,6 +1,6 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
 import {useAppDispatch} from '../hooks';
-import {RATING_OPTIONS} from '../const';
+import {MAX_CHARACTERS, RATING_OPTIONS} from '../const';
 import {submitCommentAction} from '../store/thunks/comments';
 import RatingOption from './rating-option';
 import {MIN_CHARACTERS, MIN_RATING} from '../const';
@@ -57,6 +57,7 @@ export default function OfferForm({id}: OfferFormProps) {
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
+        maxLength={MAX_CHARACTERS}
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={formData.review}
         onChange={handleFieldChange}

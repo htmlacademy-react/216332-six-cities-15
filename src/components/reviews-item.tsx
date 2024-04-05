@@ -1,6 +1,6 @@
 import {Comment} from '../types/comment';
-import {calculateRating} from '../helpers/calculateRating';
-import {formatTime} from '../helpers/dataFomrater';
+import {calculateRating} from '../helpers/calculate-rating';
+import {getFormatingTime} from '../helpers/get-formating-time';
 
 type ReviewsItemProps = {
   comment: Comment;
@@ -39,9 +39,9 @@ export default function ReviewsItem({comment} : ReviewsItemProps) {
         </p>
         <time
           className="reviews__time"
-          dateTime={date && formatTime(date,'number')}
+          dateTime={date && getFormatingTime(date,'number')}
         >
-          {date && formatTime(date, 'string')}
+          {date && getFormatingTime(date, 'string')}
         </time>
       </div>
     </li>

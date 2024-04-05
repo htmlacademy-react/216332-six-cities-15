@@ -16,6 +16,10 @@ type SignOutItemProps = {
   handleLogin: (e: MouseEvent<HTMLAnchorElement>) => void;
 }
 
+type SignInItemProps = {
+  handleFavorite: (e: MouseEvent<HTMLSpanElement>) => void;
+}
+
 const LogOutLink = ({handleLogout}: LogOutLinkProps) => (
   <li className="header__nav-item">
     <a className="header__nav-link" href="#" onClick={handleLogout}>
@@ -24,7 +28,7 @@ const LogOutLink = ({handleLogout}: LogOutLinkProps) => (
   </li>
 );
 
-const SignInItem = () => {
+const SignInItem = ({handleFavorite}: SignInItemProps) => {
   const userInfo = useAppSelector(getUserInfo);
   const favoriteOffersCount = useAppSelector(getFavoriteOffers);
   return (
@@ -32,7 +36,7 @@ const SignInItem = () => {
       <a className="header__nav-link header__nav-link--profile" href="#">
         <div className="header__avatar-wrapper user__avatar-wrapper">
         </div>
-        <span className="header__user-name user__name">{userInfo?.email}</span>
+        <span className="header__user-name user__name" onClick={handleFavorite}>{userInfo?.email}</span>
         <span className="header__favorite-count">{favoriteOffersCount.length}</span>
       </a>
     </li>
@@ -64,6 +68,11 @@ export default function Header() {
     navigate(`${AppRoute.Login}`);
   };
 
+  const handleFavoriteAction = (e: MouseEvent<HTMLSpanElement>) => {
+    e.preventDefault();
+    navigate(`${AppRoute.Favorites}`);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -78,7 +87,7 @@ export default function Header() {
               {
                 authorizationStatus === AuthorizationStatus.Auth &&
                 <>
-                  <SignInItem />
+                  <SignInItem handleFavorite={handleFavoriteAction}/>
                   <LogOutLink handleLogout={handleLogout}/>
                 </>
               }

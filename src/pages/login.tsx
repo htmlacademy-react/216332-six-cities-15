@@ -1,11 +1,19 @@
 import Container from '../components/container';
-import {useRef, FormEvent} from 'react';
+import {useRef, useMemo, FormEvent} from 'react';
 import {useAppDispatch} from '../hooks';
+import {useAppSelector} from '../hooks';
 import {loginAction} from '../store/thunks/user';
+import {getCitiesNames} from '../store/slices/cities/selectors';
+import {getRandomCity} from '../helpers/get-random-city';
+import {setCity} from '../store/slices/cities/cities';
+import {Link} from 'react-router-dom';
+import HelmetComponent from '../components/helmet-component';
 
 export default function Login() {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const citiesNames = useAppSelector(getCitiesNames);
+  const randomCity = useMemo(() => getRandomCity(citiesNames), []);
 
   const dispatch = useAppDispatch();
 
@@ -20,8 +28,16 @@ export default function Login() {
     }
   };
 
+  const randomCityHandler = (city: string) => {
+    dispatch(setCity(city));
+  };
+
   return (
     <Container extraClass="page--gray page--login" classMain="page__main--login">
+      <HelmetComponent
+        title='6 cities: authorization'
+        description='This page is the authentication gateway, allowing users to log in and access the features.'
+      />
       <div className="page__login-container container">
         <section className="login">
           <h1 className="login__title">Sign in</h1>
@@ -51,9 +67,13 @@ export default function Login() {
         </section>
         <section className="locations locations--login locations--current">
           <div className="locations__item">
-            <a className="locations__item-link" href="#">
-              <span>Amsterdam</span>
-            </a>
+            <Link
+              className="locations__item-link"
+              to="/"
+              onClick={() => randomCityHandler(randomCity)}
+            >
+              <span>{randomCity}</span>
+            </Link>
           </div>
         </section>
       </div>

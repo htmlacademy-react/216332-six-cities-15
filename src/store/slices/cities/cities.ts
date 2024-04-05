@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {CitiesType, NameSpace} from '../../../const';
 import {City} from '../../../types/city';
-import {cities} from '../../../mocks/cities';
+import {CITIES} from '../../../const';
 
 export type CityData = {
   cities: City[];
@@ -9,7 +9,7 @@ export type CityData = {
 };
 
 const initialState: CityData = {
-  cities: cities,
+  cities: CITIES,
   activeCity: CitiesType.Paris,
 };
 

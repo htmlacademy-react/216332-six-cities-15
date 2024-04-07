@@ -1,13 +1,13 @@
-import Container from '../components/container/container';
+import Container from '../../components/container/container';
 import {useRef, useMemo, FormEvent} from 'react';
-import {useAppDispatch} from '../hooks';
-import {useAppSelector} from '../hooks';
-import {loginAction} from '../store/thunks/user';
-import {getCitiesNames} from '../store/slices/cities/selectors';
-import {getRandomCity} from '../helpers/get-random-city';
-import {setCity} from '../store/slices/cities/cities';
+import {useAppDispatch} from '../../hooks';
+import {useAppSelector} from '../../hooks';
+import {loginAction} from '../../store/thunks/user';
+import {getCitiesNames} from '../../store/slices/cities/selectors';
+import {getRandomCity} from '../../helpers/get-random-city';
+import {setCity} from '../../store/slices/cities/cities';
 import {Link} from 'react-router-dom';
-import HelmetComponent from '../components/helmet-component/helmet-component';
+import HelmetComponent from '../../components/helmet-component/helmet-component';
 
 export default function Login() {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -41,7 +41,7 @@ export default function Login() {
       <div className="page__login-container container">
         <section className="login">
           <h1 className="login__title">Sign in</h1>
-          <form className="login__form form" action="#" method="post" onSubmit={handleSubmit}>
+          <form className="login__form form" action="src/pages/login/login#" method="post" onSubmit={handleSubmit}>
             <div className="login__input-wrapper form__input-wrapper">
               <label className="visually-hidden">E-mail</label>
               <input

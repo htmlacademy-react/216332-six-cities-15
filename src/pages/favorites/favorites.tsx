@@ -1,12 +1,12 @@
-import Container from '../components/container/container';
-import FavoriteLocation from '../components/favorite-location/favorite-location';
-import {useAppSelector} from '../hooks';
-import {getFavoriteOffers} from '../store/slices/favorite/selectors';
-import EmptyFavoriteOffers from '../components/empty-favorite-offers/empty-favorite-offers';
-import HelmetComponent from '../components/helmet-component/helmet-component';
+import Container from '../../components/container/container';
+import FavoriteLocation from '../../components/favorite-location/favorite-location';
+import {useAppSelector} from '../../hooks';
+import {getFavoriteOffers} from '../../store/slices/favorite/selectors';
+import EmptyFavoriteOffers from '../../components/empty-favorite-offers/empty-favorite-offers';
+import HelmetComponent from '../../components/helmet-component/helmet-component';
 import classNames from 'classnames';
 import {useMemo} from 'react';
-import {preparedFavoriteData} from '../helpers/prepared-favorite-data';
+import {preparedFavoriteData} from '../../helpers/prepared-favorite-data';
 
 export default function Favorites() {
   const offers = useAppSelector(getFavoriteOffers);

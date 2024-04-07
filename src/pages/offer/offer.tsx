@@ -1,35 +1,35 @@
 import {useEffect, MouseEvent} from 'react';
 
 import {useParams} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus, CardType, RequestsStatus} from '../const';
-import {useAppSelector} from '../hooks';
-import {useAppDispatch} from '../hooks';
+import {AppRoute, AuthorizationStatus, CardType, RequestsStatus} from '../../const';
+import {useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
 import {useNavigate} from 'react-router-dom';
 import classNames from 'classnames';
 
-import Container from '../components/container/container';
-import {calculateRating} from '../helpers/calculate-rating';
-import OfferForm from '../components/offer-form/offer-form';
-import ReviewsList from '../components/reviews-list/reviews-list';
-import Map from '../components/map/map';
-import PlacesList from '../components/places-list/places-list';
-import Loader from '../components/loader/loader';
-import HelmetComponent from '../components/helmet-component/helmet-component';
-import {MAX_COMMENTS, MAX_NEAR_OFFERS} from '../const';
+import Container from '../../components/container/container';
+import {calculateRating} from '../../helpers/calculate-rating';
+import OfferForm from '../../components/offer-form/offer-form';
+import ReviewsList from '../../components/reviews-list/reviews-list';
+import Map from '../../components/map/map';
+import PlacesList from '../../components/places-list/places-list';
+import Loader from '../../components/loader/loader';
+import HelmetComponent from '../../components/helmet-component/helmet-component';
+import {MAX_COMMENTS, MAX_NEAR_OFFERS} from '../../const';
 
-import {getAuthorizationStatus} from '../store/slices/user/selectors';
-import {getOffer, getOfferStatus} from '../store/slices/offer/selectors';
-import {getComments} from '../store/slices/comments/selectors';
-import {getOffersNearBy} from '../store/slices/nearBy/selectors';
+import {getAuthorizationStatus} from '../../store/slices/user/selectors';
+import {getOffer, getOfferStatus} from '../../store/slices/offer/selectors';
+import {getComments} from '../../store/slices/comments/selectors';
+import {getOffersNearBy} from '../../store/slices/nearBy/selectors';
 
-import {fetchNearByAction} from '../store/thunks/nearBy';
-import {fetchCommentsAction} from '../store/thunks/comments';
-import {fetchOfferAction} from '../store/thunks/offer';
-import PageNotFound from './page-not-found';
-import {changeFavoriteOfferAction} from '../store/thunks/favorite';
-import {updateOffers} from '../store/slices/offers/offers';
-import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
-import {updateOffer} from '../store/slices/offer/offer';
+import {fetchNearByAction} from '../../store/thunks/nearBy';
+import {fetchCommentsAction} from '../../store/thunks/comments';
+import {fetchOfferAction} from '../../store/thunks/offer';
+import PageNotFound from '../page-not-found/page-not-found';
+import {changeFavoriteOfferAction} from '../../store/thunks/favorite';
+import {updateOffers} from '../../store/slices/offers/offers';
+import {updateNearByOffers} from '../../store/slices/nearBy/nearBy';
+import {updateOffer} from '../../store/slices/offer/offer';
 
 export default function OfferPage() {
 

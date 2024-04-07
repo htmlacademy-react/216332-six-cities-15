@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
-import Main from './pages/main';
-import Favorites from './pages/favorites';
-import Login from './pages/login';
-import OfferPage from './pages/offer';
-import PageNotFound from './pages/page-not-found';
+import Main from './pages/main/main';
+import Favorites from './pages/favorites/favorites';
+import Login from './pages/login/login';
+import OfferPage from './pages/offer/offer';
+import PageNotFound from './pages/page-not-found/page-not-found';
 import PrivateRoute from './components/private-route/private-route';
 import {AppRoute} from './const';
 import {Route, Routes} from 'react-router-dom';

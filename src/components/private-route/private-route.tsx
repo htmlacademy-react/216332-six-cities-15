@@ -1,9 +1,9 @@
 import { Location, Navigate, useLocation } from 'react-router-dom';
-import {AppRoute, RequestsStatus} from '../const';
-import {useAppSelector} from '../hooks';
-import Loader from './loader';
-import {getUserInfoStatus} from '../store/slices/user/selectors';
-import {getUserInfo} from '../store/slices/user/selectors';
+import {AppRoute, RequestsStatus} from '../../const';
+import {useAppSelector} from '../../hooks';
+import Loader from '../loader/loader';
+import {getUserInfoStatus} from '../../store/slices/user/selectors';
+import {getUserInfo} from '../../store/slices/user/selectors';
 
 type PrivateRouteProps = {
   onlyUnAuth?: boolean;

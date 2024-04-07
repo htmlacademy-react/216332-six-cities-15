@@ -1,5 +1,5 @@
 import {NavLink} from 'react-router-dom';
-import {City} from '../types/city';
+import {City} from '../../types/city';
 import classNames from 'classnames';
 
 type TabsProps = {

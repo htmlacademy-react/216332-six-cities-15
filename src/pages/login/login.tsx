@@ -1,13 +1,13 @@
-import Container from '../components/container';
+import Container from '../../components/container/container';
 import {useRef, useMemo, FormEvent} from 'react';
-import {useAppDispatch} from '../hooks';
-import {useAppSelector} from '../hooks';
-import {loginAction} from '../store/thunks/user';
-import {getCitiesNames} from '../store/slices/cities/selectors';
-import {getRandomCity} from '../helpers/get-random-city';
-import {setCity} from '../store/slices/cities/cities';
+import {useAppDispatch} from '../../hooks';
+import {useAppSelector} from '../../hooks';
+import {loginAction} from '../../store/thunks/user';
+import {getCitiesNames} from '../../store/slices/cities/selectors';
+import {getRandomCity} from '../../helpers/get-random-city';
+import {setCity} from '../../store/slices/cities/cities';
 import {Link} from 'react-router-dom';
-import HelmetComponent from '../components/helmet-component';
+import HelmetComponent from '../../components/helmet-component/helmet-component';
 
 export default function Login() {
   const loginRef = useRef<HTMLInputElement | null>(null);

@@ -1,17 +1,17 @@
 import {MouseEvent} from 'react';
-import {OfferPreview} from '../types/offer-preview';
-import {calculateRating} from '../helpers/calculate-rating';
+import {OfferPreview} from '../../types/offer-preview';
+import {calculateRating} from '../../helpers/calculate-rating';
 import {useNavigate} from 'react-router-dom';
-import {useAppSelector} from '../hooks';
-import {useAppDispatch} from '../hooks';
-import {AppRoute, AuthorizationStatus} from '../const';
-import {CardType} from '../const';
+import {useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {CardType} from '../../const';
 import classNames from 'classnames';
-import {getAuthorizationStatus} from '../store/slices/user/selectors';
-import {changeFavoriteOfferAction} from '../store/thunks/favorite';
-import {updateOffers} from '../store/slices/offers/offers';
-import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
-import {updateOffer} from '../store/slices/offer/offer';
+import {getAuthorizationStatus} from '../../store/slices/user/selectors';
+import {changeFavoriteOfferAction} from '../../store/thunks/favorite';
+import {updateOffers} from '../../store/slices/offers/offers';
+import {updateNearByOffers} from '../../store/slices/nearBy/nearBy';
+import {updateOffer} from '../../store/slices/offer/offer';
 
 type PlaceCardProps = {
   offer: OfferPreview;

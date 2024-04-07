@@ -1,26 +1,26 @@
 import {useState} from 'react';
-import Container from '../components/container';
-import PlacesList from '../components/places-list';
-import Map from '../components/map';
-import Tabs from '../components/tabs';
-import Loader from '../components/loader';
-import PlacesSorting from '../components/places-sorting';
-import HelmetComponent from '../components/helmet-component';
+import Container from '../../components/container/container';
+import PlacesList from '../../components/places-list/places-list';
+import Map from '../../components/map/map';
+import Tabs from '../../components/tabs/tabs';
+import Loader from '../../components/loader/loader';
+import PlacesSorting from '../../components/places-sorting/places-sorting';
+import HelmetComponent from '../../components/helmet-component/helmet-component';
 
-import {SORT_OPTIONS, CardType} from '../const';
-import {useAppDispatch, useAppSelector} from '../hooks';
-import {setCity} from '../store/slices/cities/cities';
-import {setActiveId} from '../store/slices/offers/offers';
-import {sortOffers} from '../helpers/sort-offers';
+import {SORT_OPTIONS, CardType} from '../../const';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {setCity} from '../../store/slices/cities/cities';
+import {setActiveId} from '../../store/slices/offers/offers';
+import {sortOffers} from '../../helpers/sort-offers';
 import {
   getActiveOffer, getErrorStatus,
   getFilteredOffers,
   getOffersDataLoadingStatus
-} from '../store/slices/offers/selectors';
-import {getCities, getCurrentCity} from '../store/slices/cities/selectors';
+} from '../../store/slices/offers/selectors';
+import {getCities, getCurrentCity} from '../../store/slices/cities/selectors';
 import classNames from 'classnames';
-import EmptyOffers from '../components/empty-offers';
-import {Offer} from '../types/offer';
+import EmptyOffers from '../../components/empty-offers/empty-offers';
+import {Offer} from '../../types/offer';
 
 export default function Main() {
   const [activeSort, setActiveSort] = useState(SORT_OPTIONS.popular);

@@ -1,6 +1,6 @@
-import Header from './header';
+import Header from '../header/header';
 import {ReactNode} from 'react';
-import Footer from './footer';
+import Footer from '../footer/footer';
 
 type TContainer = {
   children: ReactNode;

@@ -1,9 +1,9 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
-import {useAppDispatch} from '../hooks';
-import {MAX_CHARACTERS, RATING_OPTIONS} from '../const';
-import {submitCommentAction} from '../store/thunks/comments';
-import RatingOption from './rating-option';
-import {MIN_CHARACTERS, MIN_RATING} from '../const';
+import {useAppDispatch} from '../../hooks';
+import {MAX_CHARACTERS, RATING_OPTIONS} from '../../const';
+import {submitCommentAction} from '../../store/thunks/comments';
+import RatingOption from '../rating-option/rating-option';
+import {MIN_CHARACTERS, MIN_RATING} from '../../const';
 
 type OfferFormProps = {
   id: string | undefined;

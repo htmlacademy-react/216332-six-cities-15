@@ -1,4 +1,4 @@
-import PlacesOptions from './places-options';
+import PlacesOptions from '../places-options/places-options';
 import {useEffect, useState} from 'react';
 
 type PlacesSortingProps = {

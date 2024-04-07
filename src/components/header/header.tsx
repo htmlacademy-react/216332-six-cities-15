@@ -1,12 +1,12 @@
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
-import {useAppDispatch} from '../hooks';
-import {logoutAction} from '../store/thunks/user';
+import {useAppDispatch} from '../../hooks';
+import {logoutAction} from '../../store/thunks/user';
 import {MouseEvent} from 'react';
-import {useAppSelector} from '../hooks';
-import {AppRoute, AuthorizationStatus} from '../const';
-import {getAuthorizationStatus, getUserInfo} from '../store/slices/user/selectors';
-import {getFavoriteOffers} from '../store/slices/favorite/selectors';
+import {useAppSelector} from '../../hooks';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus, getUserInfo} from '../../store/slices/user/selectors';
+import {getFavoriteOffers} from '../../store/slices/favorite/selectors';
 
 type LogOutLinkProps = {
   handleLogout: (e: MouseEvent<HTMLAnchorElement>) => void;

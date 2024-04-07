@@ -1,13 +1,13 @@
 import {MouseEvent} from 'react';
-import {OfferPreview} from '../types/offer-preview';
-import {calculateRating} from '../helpers/calculate-rating';
+import {OfferPreview} from '../../types/offer-preview';
+import {calculateRating} from '../../helpers/calculate-rating';
 import {useNavigate} from 'react-router-dom';
-import {useAppDispatch} from '../hooks';
-import {AppRoute} from '../const';
-import {changeFavoriteOfferAction} from '../store/thunks/favorite';
-import {updateOffers} from '../store/slices/offers/offers';
-import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
-import {updateOffer} from '../store/slices/offer/offer';
+import {useAppDispatch} from '../../hooks';
+import {AppRoute} from '../../const';
+import {changeFavoriteOfferAction} from '../../store/thunks/favorite';
+import {updateOffers} from '../../store/slices/offers/offers';
+import {updateNearByOffers} from '../../store/slices/nearBy/nearBy';
+import {updateOffer} from '../../store/slices/offer/offer';
 
 type FavoriteCardProps = {
   offer: OfferPreview;

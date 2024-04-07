@@ -1,4 +1,4 @@
-import {SORT_OPTIONS} from '../const';
+import {SORT_OPTIONS} from '../../const';
 import classNames from 'classnames';
 
 type PlacesOptionsProps = {

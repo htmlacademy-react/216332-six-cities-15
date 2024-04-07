@@ -1,11 +1,11 @@
 import {useRef, useEffect} from 'react';
 import {Icon, Marker, layerGroup} from 'leaflet';
-import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../const';
-import useMap from '../hooks/use-map';
-import {Offer} from '../types/offer';
-import {City} from '../types/city';
+import {URL_MARKER_CURRENT, URL_MARKER_DEFAULT} from '../../const';
+import useMap from '../../hooks/use-map';
+import {Offer} from '../../types/offer';
+import {City} from '../../types/city';
 import 'leaflet/dist/leaflet.css';
-import {OfferPreview} from '../types/offer-preview';
+import {OfferPreview} from '../../types/offer-preview';
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,

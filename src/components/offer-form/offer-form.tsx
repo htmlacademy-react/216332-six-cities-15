@@ -1,9 +1,9 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
-import {useAppDispatch} from '../hooks';
-import {MAX_CHARACTERS, RATING_OPTIONS} from '../const';
-import {submitCommentAction} from '../store/thunks/comments';
-import RatingOption from './rating-option';
-import {MIN_CHARACTERS, MIN_RATING} from '../const';
+import {useAppDispatch} from '../../hooks';
+import {MAX_CHARACTERS, RATING_OPTIONS} from '../../const';
+import {submitCommentAction} from '../../store/thunks/comments';
+import RatingOption from '../rating-option/rating-option';
+import {MIN_CHARACTERS, MIN_RATING} from '../../const';
 
 type OfferFormProps = {
   id: string | undefined;
@@ -38,7 +38,7 @@ export default function OfferForm({id}: OfferFormProps) {
   const isChecked = (value: string): boolean => value === formData.rating;
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
+    <form className="reviews__form form" action="src/components/offer-form/offer-form#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
 
       <div className="reviews__rating-form form__rating">

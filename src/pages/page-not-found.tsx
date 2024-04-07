@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import HelmetComponent from '../components/helmet-component';
+import HelmetComponent from '../components/helmet-component/helmet-component';
 
 const variants = {
   page: {text: 'Page Not Found', o: '🤓'},

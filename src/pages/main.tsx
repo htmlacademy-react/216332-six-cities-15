@@ -1,11 +1,11 @@
 import {useState} from 'react';
-import Container from '../components/container';
-import PlacesList from '../components/places-list';
-import Map from '../components/map';
-import Tabs from '../components/tabs';
-import Loader from '../components/loader';
-import PlacesSorting from '../components/places-sorting';
-import HelmetComponent from '../components/helmet-component';
+import Container from '../components/container/container';
+import PlacesList from '../components/places-list/places-list';
+import Map from '../components/map/map';
+import Tabs from '../components/tabs/tabs';
+import Loader from '../components/loader/loader';
+import PlacesSorting from '../components/places-sorting/places-sorting';
+import HelmetComponent from '../components/helmet-component/helmet-component';
 
 import {SORT_OPTIONS, CardType} from '../const';
 import {useAppDispatch, useAppSelector} from '../hooks';
@@ -19,7 +19,7 @@ import {
 } from '../store/slices/offers/selectors';
 import {getCities, getCurrentCity} from '../store/slices/cities/selectors';
 import classNames from 'classnames';
-import EmptyOffers from '../components/empty-offers';
+import EmptyOffers from '../components/empty-offers/empty-offers';
 import {Offer} from '../types/offer';
 
 export default function Main() {

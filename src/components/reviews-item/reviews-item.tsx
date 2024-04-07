@@ -1,6 +1,6 @@
-import {Comment} from '../types/comment';
-import {calculateRating} from '../helpers/calculate-rating';
-import {getFormatingTime} from '../helpers/get-formating-time';
+import {Comment} from '../../types/comment';
+import {calculateRating} from '../../helpers/calculate-rating';
+import {getFormatingTime} from '../../helpers/get-formating-time';
 
 type ReviewsItemProps = {
   comment: Comment;

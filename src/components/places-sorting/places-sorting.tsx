@@ -1,4 +1,4 @@
-import PlacesOptions from './places-options';
+import PlacesOptions from '../places-options/places-options';
 import {useEffect, useState} from 'react';
 
 type PlacesSortingProps = {
@@ -31,7 +31,7 @@ export default function PlacesSorting({active, onChangeSort}: PlacesSortingProps
   return (
     <form
       className="places__sorting"
-      action="#"
+      action="src/components/places-sorting/places-sorting#"
       method="get"
     >
       <span className="places__sorting-caption">Sort by</span>

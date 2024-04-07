@@ -1,17 +1,17 @@
 import {MouseEvent} from 'react';
-import {OfferPreview} from '../types/offer-preview';
-import {calculateRating} from '../helpers/calculate-rating';
+import {OfferPreview} from '../../types/offer-preview';
+import {calculateRating} from '../../helpers/calculate-rating';
 import {useNavigate} from 'react-router-dom';
-import {useAppSelector} from '../hooks';
-import {useAppDispatch} from '../hooks';
-import {AppRoute, AuthorizationStatus} from '../const';
-import {CardType} from '../const';
+import {useAppSelector} from '../../hooks';
+import {useAppDispatch} from '../../hooks';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {CardType} from '../../const';
 import classNames from 'classnames';
-import {getAuthorizationStatus} from '../store/slices/user/selectors';
-import {changeFavoriteOfferAction} from '../store/thunks/favorite';
-import {updateOffers} from '../store/slices/offers/offers';
-import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
-import {updateOffer} from '../store/slices/offer/offer';
+import {getAuthorizationStatus} from '../../store/slices/user/selectors';
+import {changeFavoriteOfferAction} from '../../store/thunks/favorite';
+import {updateOffers} from '../../store/slices/offers/offers';
+import {updateNearByOffers} from '../../store/slices/nearBy/nearBy';
+import {updateOffer} from '../../store/slices/offer/offer';
 
 type PlaceCardProps = {
   offer: OfferPreview;
@@ -96,7 +96,7 @@ export default function PlaceCard(
           'near-places__image-wrapper': CardType.NearPlaces === variant,
         })}
       >
-        <a href="#" onClick={onClickHandler}>
+        <a href="src/components/place-card/place-card#" onClick={onClickHandler}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -136,7 +136,7 @@ export default function PlaceCard(
           </div>
         </div>
         <h2 className="place-card__name" onClick={onClickHandler}>
-          <a href="#">{title}</a>
+          <a href="src/components/place-card/place-card#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

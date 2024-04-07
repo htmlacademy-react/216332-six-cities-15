@@ -1,13 +1,13 @@
 import {MouseEvent} from 'react';
-import {OfferPreview} from '../types/offer-preview';
-import {calculateRating} from '../helpers/calculate-rating';
+import {OfferPreview} from '../../types/offer-preview';
+import {calculateRating} from '../../helpers/calculate-rating';
 import {useNavigate} from 'react-router-dom';
-import {useAppDispatch} from '../hooks';
-import {AppRoute} from '../const';
-import {changeFavoriteOfferAction} from '../store/thunks/favorite';
-import {updateOffers} from '../store/slices/offers/offers';
-import {updateNearByOffers} from '../store/slices/nearBy/nearBy';
-import {updateOffer} from '../store/slices/offer/offer';
+import {useAppDispatch} from '../../hooks';
+import {AppRoute} from '../../const';
+import {changeFavoriteOfferAction} from '../../store/thunks/favorite';
+import {updateOffers} from '../../store/slices/offers/offers';
+import {updateNearByOffers} from '../../store/slices/nearBy/nearBy';
+import {updateOffer} from '../../store/slices/offer/offer';
 
 type FavoriteCardProps = {
   offer: OfferPreview;
@@ -57,7 +57,7 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
         </div>
       }
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#" onClick={onClickHandler}>
+        <a href="src/components/favorite-card/favorite-card#" onClick={onClickHandler}>
           <img className="place-card__image" src={previewImage} width="150" height="110"
             alt="Place image"
           />
@@ -87,7 +87,7 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
           </div>
         </div>
         <h2 className="place-card__name" onClick={onClickHandler}>
-          <a href="#">{title}</a>
+          <a href="src/components/favorite-card/favorite-card#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

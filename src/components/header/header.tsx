@@ -1,12 +1,12 @@
 import {Link} from 'react-router-dom';
 import {useNavigate} from 'react-router-dom';
-import {useAppDispatch} from '../hooks';
-import {logoutAction} from '../store/thunks/user';
+import {useAppDispatch} from '../../hooks';
+import {logoutAction} from '../../store/thunks/user';
 import {MouseEvent} from 'react';
-import {useAppSelector} from '../hooks';
-import {AppRoute, AuthorizationStatus} from '../const';
-import {getAuthorizationStatus, getUserInfo} from '../store/slices/user/selectors';
-import {getFavoriteOffers} from '../store/slices/favorite/selectors';
+import {useAppSelector} from '../../hooks';
+import {AppRoute, AuthorizationStatus} from '../../const';
+import {getAuthorizationStatus, getUserInfo} from '../../store/slices/user/selectors';
+import {getFavoriteOffers} from '../../store/slices/favorite/selectors';
 
 type LogOutLinkProps = {
   handleLogout: (e: MouseEvent<HTMLAnchorElement>) => void;
@@ -22,7 +22,7 @@ type SignInItemProps = {
 
 const LogOutLink = ({handleLogout}: LogOutLinkProps) => (
   <li className="header__nav-item">
-    <a className="header__nav-link" href="#" onClick={handleLogout}>
+    <a className="header__nav-link" href="src/components/header/header#" onClick={handleLogout}>
       <span className="header__signout">Sign out</span>
     </a>
   </li>
@@ -33,7 +33,7 @@ const SignInItem = ({handleFavorite}: SignInItemProps) => {
   const favoriteOffersCount = useAppSelector(getFavoriteOffers);
   return (
     <li className="header__nav-item user">
-      <a className="header__nav-link header__nav-link--profile" href="#">
+      <a className="header__nav-link header__nav-link--profile" href="src/components/header/header#">
         <div className="header__avatar-wrapper user__avatar-wrapper">
         </div>
         <span className="header__user-name user__name" onClick={handleFavorite}>{userInfo?.email}</span>
@@ -45,7 +45,7 @@ const SignInItem = ({handleFavorite}: SignInItemProps) => {
 
 const SignOutItem = ({handleLogin}: SignOutItemProps) => (
   <li className="header__nav-item user">
-    <a className="header__nav-link header__nav-link--profile" href="#" onClick={handleLogin}>
+    <a className="header__nav-link header__nav-link--profile" href="src/components/header/header#" onClick={handleLogin}>
       <div className="header__avatar-wrapper user__avatar-wrapper">
       </div>
       <span className="header__login">Sign in</span>

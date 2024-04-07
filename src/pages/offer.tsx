@@ -7,14 +7,14 @@ import {useAppDispatch} from '../hooks';
 import {useNavigate} from 'react-router-dom';
 import classNames from 'classnames';
 
-import Container from '../components/container';
+import Container from '../components/container/container';
 import {calculateRating} from '../helpers/calculate-rating';
-import OfferForm from '../components/offer-form';
-import ReviewsList from '../components/reviews-list';
-import Map from '../components/map';
-import PlacesList from '../components/places-list';
-import Loader from '../components/loader';
-import HelmetComponent from '../components/helmet-component';
+import OfferForm from '../components/offer-form/offer-form';
+import ReviewsList from '../components/reviews-list/reviews-list';
+import Map from '../components/map/map';
+import PlacesList from '../components/places-list/places-list';
+import Loader from '../components/loader/loader';
+import HelmetComponent from '../components/helmet-component/helmet-component';
 import {MAX_COMMENTS, MAX_NEAR_OFFERS} from '../const';
 
 import {getAuthorizationStatus} from '../store/slices/user/selectors';

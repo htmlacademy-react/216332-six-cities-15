@@ -57,7 +57,7 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
         </div>
       }
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="src/components/favorite-card/favorite-card#" onClick={onClickHandler}>
+        <a href="#" onClick={onClickHandler}>
           <img className="place-card__image" src={previewImage} width="150" height="110"
             alt="Place image"
           />
@@ -87,7 +87,7 @@ export default function FavoriteCard({offer}: FavoriteCardProps) {
           </div>
         </div>
         <h2 className="place-card__name" onClick={onClickHandler}>
-          <a href="src/components/favorite-card/favorite-card#">{title}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

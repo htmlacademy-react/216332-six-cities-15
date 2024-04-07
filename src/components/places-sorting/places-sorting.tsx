@@ -31,7 +31,7 @@ export default function PlacesSorting({active, onChangeSort}: PlacesSortingProps
   return (
     <form
       className="places__sorting"
-      action="src/components/places-sorting/places-sorting#"
+      action="#"
       method="get"
     >
       <span className="places__sorting-caption">Sort by</span>

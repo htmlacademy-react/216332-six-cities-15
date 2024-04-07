@@ -96,7 +96,7 @@ export default function PlaceCard(
           'near-places__image-wrapper': CardType.NearPlaces === variant,
         })}
       >
-        <a href="src/components/place-card/place-card#" onClick={onClickHandler}>
+        <a href="#" onClick={onClickHandler}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -136,7 +136,7 @@ export default function PlaceCard(
           </div>
         </div>
         <h2 className="place-card__name" onClick={onClickHandler}>
-          <a href="src/components/place-card/place-card#">{title}</a>
+          <a href="#">{title}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

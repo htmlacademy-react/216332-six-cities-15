@@ -38,7 +38,7 @@ export default function OfferForm({id}: OfferFormProps) {
   const isChecked = (value: string): boolean => value === formData.rating;
 
   return (
-    <form className="reviews__form form" action="src/components/offer-form/offer-form#" method="post" onSubmit={handleSubmit}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
 
       <div className="reviews__rating-form form__rating">
